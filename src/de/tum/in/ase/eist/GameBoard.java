@@ -7,7 +7,9 @@ import de.tum.in.ase.eist.audio.AudioPlayerInterface;
 import de.tum.in.ase.eist.car.Car;
 import de.tum.in.ase.eist.car.FastCar;
 import de.tum.in.ase.eist.car.SlowCar;
+import de.tum.in.ase.eist.car.DrunkCar;
 import de.tum.in.ase.eist.collision.Collision;
+import de.tum.in.ase.eist.collision.TopCollision;
 
 /**
  * Creates all car objects, detects collisions, updates car positions, notifies
@@ -34,9 +36,9 @@ public class GameBoard {
 
 	private Boolean gameWon;
 
-	//constants
-	public static int NUMBER_OF_SLOW_CARS = 5;
+	public static int NUMBER_OF_SLOW_CARS = 4;
 	public static int NUMBER_OF_TESLA_CARS = 2;
+	public static int NUMBER_OF_DRUNK_CARS = 1;
 	
 	/**
 	 * Constructor, creates the gameboard based on size 
@@ -56,9 +58,12 @@ public class GameBoard {
 		for (int i = 0; i < NUMBER_OF_SLOW_CARS; i++) {
 			this.cars.add(new SlowCar(this.size.getWidth(), this.size.getHeight()));
 		}
-        for (int i = 0; i < NUMBER_OF_TESLA_CARS; i++) {
-            this.cars.add(new FastCar(this.size.getWidth(), this.size.getHeight()));
-        }
+		for (int i = 0; i < NUMBER_OF_TESLA_CARS; i++) {
+			this.cars.add(new FastCar(this.size.getWidth(), this.size.getHeight()));
+		}
+		for (int i = 0; i < NUMBER_OF_DRUNK_CARS; i++) {
+			this.cars.add(new DrunkCar(this.size.getWidth(), this.size.getHeight()));
+		}
 	}
 
 	/**
@@ -187,14 +192,11 @@ public class GameBoard {
 			if (car.isCrunched()) {
 				continue; // because there is no need to check for a collision
 			}
-			
-			// TODO 4: Add a new collision type! 
-			// Hint: Make sure to create a subclass of the class Collision 
-			// and store it in the new Collision package.
-			// Create a new collision object 
-			// and check if the collision between player car and autonomous car evaluates as expected
 
-			Collision collision = new Collision(player.getCar(), car);
+			// Create a new collision object
+			// and check if the collision between player car and autonomous car evaluates as
+			// expected
+			Collision collision = new TopCollision(player.getCar(), car);
 
 			if (collision.isCollision) {
 				Car winner = collision.evaluate();
@@ -202,12 +204,16 @@ public class GameBoard {
 				System.out.println(winner);
 				loserCars.add(loser);
 				audioPlayer.playCrashSound();
-				
-				// TODO 2: The loser car is crunched and stops driving
-				
-				// TODO 3: The player gets notified when he looses or wins the game
-				// Hint: you should set the attribute gameWon accordingly, use 'isWinner()' below for your implementation
-				
+
+				loser.setCrunched();
+
+				if (isWinner()) {
+					this.gameWon = true;
+					this.stopGame();
+				} else if (this.getPlayerCar().equals(loser)) {
+					this.gameWon = false;
+					this.stopGame();
+				}
 			}
 		}
 	}
