@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.tum.in.ase.eist</groupId>
-	<artifactId>H02E03-Bumpers-Sprint-3-Exercise</artifactId>
+	<artifactId>Tum-Invaders</artifactId>
 	<packaging>jar</packaging>
 	<version>3.0</version>
-	<name>H02E03 Bumpers Sprint 3 Exercise</name>
+	<name>Tum Invaders</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -73,7 +73,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>de.tum.in.ase.eist.Bumpers</mainClass>
+							<mainClass>de.tum.in.ase.eist.TumInvaders</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

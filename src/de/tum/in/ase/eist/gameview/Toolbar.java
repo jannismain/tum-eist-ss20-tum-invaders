@@ -5,7 +5,7 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.util.Optional;
 
-import de.tum.in.ase.eist.BumpersApplication;
+import de.tum.in.ase.eist.TumInvadersApplication;
 
 /**
  *
@@ -14,11 +14,11 @@ import de.tum.in.ase.eist.BumpersApplication;
  *
  */
 public class Toolbar extends ToolBar {
-    private BumpersApplication gameWindow;
+    private TumInvadersApplication gameWindow;
     private Button start;
     private Button stop;
 
-    public Toolbar(BumpersApplication gameWindow) {
+    public Toolbar(TumInvadersApplication gameWindow) {
         this.start = new Button("Start");
         this.stop = new Button("Stop");
         initActions();
@@ -53,6 +53,7 @@ public class Toolbar extends ToolBar {
 
     /**
      * Resets the toolbar button status
+     * 
      * @param running Used to disable/enable buttons
      */
     public void resetToolBarButtonStatus(boolean running) {
@@ -63,14 +64,14 @@ public class Toolbar extends ToolBar {
     /**
      * @return current gameWindow
      */
-    public BumpersApplication getGameWindow() {
+    public TumInvadersApplication getGameWindow() {
         return this.gameWindow;
     }
 
     /**
      * @param gameWindow New gameWindow to be set
      */
-    public void setGameWindow(BumpersApplication gameWindow) {
+    public void setGameWindow(TumInvadersApplication gameWindow) {
         this.gameWindow = gameWindow;
     }
 }

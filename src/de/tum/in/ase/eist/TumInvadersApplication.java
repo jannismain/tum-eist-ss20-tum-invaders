@@ -9,22 +9,21 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- * Starts the Bumpers Application, loads the tool bar and the gameboardUI. This
+ * Starts the TumInvaders Application, loads the tool bar and the gameboardUI. This
  * class is the root of the JavaFX Application.
  */
-public class BumpersApplication extends Application {
+public class TumInvadersApplication extends Application {
 
 	public GameBoardUI gameBoardUI; // the user interface object, where cars drive
 	public Toolbar toolBar; // the tool bar object with start and stop buttons
 
 	/**
-	 * Starts the Bumpers Window by setting up a new tool bar, a new user
-	 * interface and adding them to the stage.
-	 * 
+	 * Starts the TumInvaders Window by setting up a new tool bar, a new  interface
+	 * and adding them to the stage.
+	 *
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
-	 * @param primaryStage
-	 *            the primary stage for this application, onto which the
-	 *            application scene can be set.
+	 * @param primaryStage the primary stage for this application, onto which the
+	 *                     application scene can be set.
 	 */
 	@Override
 	public void start(Stage primaryStage) {
@@ -46,7 +45,7 @@ public class BumpersApplication extends Application {
 
 		// scene and stages
 		Scene scene = new Scene(gridLayout);
-		primaryStage.setTitle("Bumpers");
+		primaryStage.setTitle("TumInvaders");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
