@@ -121,6 +121,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 		this.keyboardSteering = new InputHandler(this, this.gameBoard.getPlayer());
 		this.gameBoard.resetElements();
 		this.gameBoard.getInvaders().forEach((car -> this.carImages.put(car, getImage(car.getIconLocation()))));
+		this.gameBoard.getBullets().forEach((car -> this.carImages.put(car, getImage(car.getIconLocation()))));
 		this.carImages.put(this.gameBoard.getPlayer(), this.getImage(this.gameBoard.getPlayer().getIconLocation()));
 		paint(this.graphicsContext);
 		this.toolBar.resetToolBarButtonStatus(false);

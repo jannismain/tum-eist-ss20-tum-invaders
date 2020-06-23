@@ -1,6 +1,6 @@
 package de.tum.in.ase.eist;
 
-public class Invader extends UIElement {
+public class Invader extends UIElement implements ShootingUIElement {
 
 	public static String INVADER_IMAGE_FILE = "Invader.png";
 
@@ -15,5 +15,11 @@ public class Invader extends UIElement {
 		this.MIN_SPEED = 2;
 		this.MAX_SPEED = 5;
 		this.setIcon(INVADER_IMAGE_FILE);
+	}
+
+	@Override
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
 	}
 }

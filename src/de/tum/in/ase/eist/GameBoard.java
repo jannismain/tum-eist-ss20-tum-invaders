@@ -18,6 +18,7 @@ public class GameBoard {
 
 	// list of all living invaders
 	private List<Invader> invaders = new ArrayList<>();
+	private List<Bullet> bullets = new ArrayList<>();
 
 	// list of all existing barriers
 	private List<Barrier> barriers = new ArrayList<>();
@@ -57,6 +58,9 @@ public class GameBoard {
 		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
 			this.invaders.add(new Invader(this.size.getWidth(), this.size.getHeight()));
 		}
+		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
+			this.bullets.add(new Bullet(this.size.getWidth(), this.size.getHeight()));
+		}
 		for (int i = 0; i < NUMBER_OF_BARRIERS; i++) {
 			this.barriers.add(new Barrier(this.size.getWidth(), this.size.getHeight()));
 		}
@@ -69,6 +73,7 @@ public class GameBoard {
 	public void resetElements() {
 		this.player.reset(this.player.getPosition().getX(), this.player.getPosition().getY());
 		this.invaders.clear();
+		this.bullets.clear();
 		addUIElements();
 	}
 
@@ -102,6 +107,10 @@ public class GameBoard {
 	 */
 	public List<Invader> getInvaders() {
 		return this.invaders;
+	}
+	
+	public List<Bullet> getBullets() {
+		return this.bullets;
 	}
 
 	/**
@@ -166,6 +175,7 @@ public class GameBoard {
 	public void moveInvaders() {
 
 		List<Invader> invaders = getInvaders();
+		List<Bullet> bullets = getBullets();
 
 		// maximum x and y values a car can have depending on the size of the game board
 		int maxX = (int) size.getWidth();
@@ -174,6 +184,10 @@ public class GameBoard {
 		// update the positions of the player car and the autonomous cars
 		for (UIElement invader : invaders) {
 			invader.updatePosition(maxX, maxY);
+		}
+		
+		for (UIElement bullet : bullets) {
+			bullet.updatePosition(maxX, maxY);
 		}
 
 		player.updatePosition(maxX, maxY);
