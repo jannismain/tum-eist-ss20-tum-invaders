@@ -5,12 +5,13 @@ import de.tum.in.ase.eist.gameview.Toolbar;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- * Starts the TumInvaders Application, loads the tool bar and the gameboardUI. This
- * class is the root of the JavaFX Application.
+ * Starts the TumInvaders Application, loads the tool bar and the gameboardUI.
+ * This class is the root of the JavaFX Application.
  */
 public class TumInvadersApplication extends Application {
 
@@ -18,7 +19,7 @@ public class TumInvadersApplication extends Application {
 	public Toolbar toolBar; // the tool bar object with start and stop buttons
 
 	/**
-	 * Starts the TumInvaders Window by setting up a new tool bar, a new  interface
+	 * Starts the TumInvaders Window by setting up a new tool bar, a new interface
 	 * and adding them to the stage.
 	 *
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
@@ -45,6 +46,10 @@ public class TumInvadersApplication extends Application {
 
 		// scene and stages
 		Scene scene = new Scene(gridLayout);
+
+		// Need to add keyHandler to the main scene
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, this.gameBoardUI.getInputHandler().getKeyHandler());
+		scene.addEventHandler(KeyEvent.KEY_RELEASED, this.gameBoardUI.getInputHandler().getKeyHandler());
 		primaryStage.setTitle("TumInvaders");
 		primaryStage.setScene(scene);
 		primaryStage.show();

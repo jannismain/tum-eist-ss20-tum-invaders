@@ -47,21 +47,30 @@ public class InputHandler {
         @Override
         public void handle(KeyEvent e) {
             // Show the help window when the F1 key is pressed
-            System.out.println("Pressed: " + e.getCode().getName());
+            System.out.println("Pressed: " + e.getCode().getName() + " (" + e.getCode() + ")");
             if (e.getEventType() == KeyEvent.KEY_PRESSED) {
-                player.move();
-                if (e.getCode() == KeyCode.LEFT) {
+                if (e.getCode() == KeyCode.K) {
                     player.setDirection(90);
-                } else if (e.getCode() == KeyCode.RIGHT) {
+                    player.move();
+                } else if (e.getCode() == KeyCode.J) {
                     player.setDirection(270);
+                    player.move();
+                } else if (e.getCode() == KeyCode.F) {
+                    System.out.println("Shoot!");
                 }
                 e.consume();
-            } else if (e.getEventType() == KeyEvent.KEY_RELEASED) {
+            } else if (e.getEventType() == KeyEvent.KEY_RELEASED
+                    && (e.getCode() == KeyCode.J || e.getCode() == KeyCode.K)) {
+                System.out.println("Stop Moving");
                 player.stop();
                 e.consume();
             }
         }
 
     };
+
+    public EventHandler<KeyEvent> getKeyHandler() {
+        return this.keyHandler;
+    }
 
 }
