@@ -141,12 +141,10 @@ public abstract class UIElement {
         // calculate position in case the boarder of the game board has been reached
         if (this.position.getX() < 0) {
             this.position = new Point2D(0, this.position.getY());
-            this.direction = 360 - this.direction;
         }
 
         if (this.position.getX() + this.size.getWidth() > maxX) {
             this.position = new Point2D(maxX - this.size.getWidth(), this.position.getY());
-            this.direction = 360 - this.direction;
         }
         if (this.position.getY() - this.size.getHeight() < 0) {
             this.position = new Point2D(this.position.getX(), this.size.getHeight());
