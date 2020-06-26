@@ -1,7 +1,9 @@
 /**
  * This class was taken from Bumpers and adapted for SpaceInvaders
  */
-package de.tum.in.ase.eist;
+package de.tum.in.ase.eist.controller;
+
+import de.tum.in.ase.eist.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -208,18 +210,5 @@ public class GameBoard {
 				audioPlayer.playExplosionSound();
 			}
 		}
-	}
-
-	/**
-	 * If all invaders are dead, the player wins.
-	 *
-	 * @return true if game is won
-	 * @return false if game is not (yet) won
-	 */
-	private boolean isWinner() {
-		if (getInvaders().size() == 0) {
-			return true;
-		}
-		return false;
 	}
 }

@@ -21,7 +21,7 @@ import java.util.Random;
 import java.util.List;
 
 import de.tum.in.ase.eist.Dimension2D;
-import de.tum.in.ase.eist.GameBoard;
+import de.tum.in.ase.eist.controller.GameBoard;
 import de.tum.in.ase.eist.Point2D;
 import de.tum.in.ase.eist.audio.AudioPlayer;
 import de.tum.in.ase.eist.UIElement;

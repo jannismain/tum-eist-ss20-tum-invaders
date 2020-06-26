@@ -1,11 +1,7 @@
 /**
- * This class was taken from Bumpers as is
+ * This class was taken from Bumpers and adapted for Space Invader
  */
 package de.tum.in.ase.eist;
-
-import de.tum.in.ase.eist.Dimension2D;
-import de.tum.in.ase.eist.Point2D;
-import de.tum.in.ase.eist.UIElement;
 
 /**
  * This class defines the behavior when two UIElements collide.
