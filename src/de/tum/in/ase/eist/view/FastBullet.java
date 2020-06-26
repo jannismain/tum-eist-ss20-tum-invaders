@@ -4,15 +4,16 @@
 package de.tum.in.ase.eist.view;
 import de.tum.in.ase.eist.view.geometry.Point2D;
 
-public class Bullet extends UIElement implements AbstractWeapon {
+public class FastBullet extends UIElement implements AbstractWeapon {
 
 	public static String BULLET_IMAGE_FILE = "bullet.png";
-	private int RANK = 1;
+	private int RANK = 2;
 
-	public Bullet(int x, int y, Boolean up) {
+	public FastBullet(int x, int y, Boolean up) {
 		super(x, y, 5 ,10);
 		this.setDirection(up ? 0 : 180);
 		this.setIcon(BULLET_IMAGE_FILE);
+		this.setSpeed(20);
 	}
 
 	public void updatePosition(int maxX, int maxY) {
