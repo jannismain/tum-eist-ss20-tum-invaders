@@ -1,6 +1,6 @@
 package de.tum.in.ase.eist;
 
-public class Bullet extends UIElement implements MovingUIElement{
+public class Bullet extends UIElement {
 
 	public static String BULLET_IMAGE_FILE = "bullet.png";
 
