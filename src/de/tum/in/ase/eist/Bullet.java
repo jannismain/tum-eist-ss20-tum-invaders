@@ -4,9 +4,9 @@ public class Bullet extends UIElement {
 
 	public static String BULLET_IMAGE_FILE = "bullet.png";
 
-	public Bullet(int x, int y) {
+	public Bullet(int x, int y, Boolean up) {
 		super(x, y, 5 ,10);
-		this.setDirection(0);
+		this.setDirection(up ? 0 : 180);
 		this.setIcon(BULLET_IMAGE_FILE);
 	}
 

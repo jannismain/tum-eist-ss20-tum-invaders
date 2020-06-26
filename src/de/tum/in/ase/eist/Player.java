@@ -21,9 +21,7 @@ public class Player extends UIElement {
 	}
 
 	public Bullet shoot() {
-		Bullet b = new Bullet(this.position.getX()+(this.getSize().getWidth()/2)-1, this.position.getY()+this.getSize().getHeight()/2);
-		b.setDirection(0);
-		return b;
+		return new Bullet(this.position.getX()+(this.getSize().getWidth()/2)-1, this.position.getY()+this.getSize().getHeight()/2, true);
 	}
 
 }

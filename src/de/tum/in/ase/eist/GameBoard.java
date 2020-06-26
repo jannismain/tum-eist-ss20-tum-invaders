@@ -17,6 +17,7 @@ public class GameBoard {
 
 	private List<Invader> invaders = new ArrayList<>();
 	private List<Bullet> bullets = new ArrayList<>();
+	private List<Bullet> enemyBullets = new ArrayList<>();
 	private Player player;
 
 	private AudioPlayerInterface audioPlayer;
@@ -28,7 +29,7 @@ public class GameBoard {
 
 	private Boolean gameWon;
 
-	public static int NUMBER_OF_INVADERS = 4;
+	public static int NUMBER_OF_INVADERS = 1;
 
 	/**
 	 * Constructor, creates the gameboard based on size
@@ -59,6 +60,7 @@ public class GameBoard {
 		this.player.reset(this.player.getPosition().getX(), this.player.getPosition().getY());
 		this.invaders.clear();
 		this.bullets.clear();
+		this.enemyBullets.clear();
 		addUIElements();
 	}
 
@@ -98,13 +100,19 @@ public class GameBoard {
 		return this.bullets;
 	}
 
-	public void addBullet(Bullet b) {
-		this.bullets.add(b);
-		System.out.println("Bullet created!");
+	public List<Bullet> getEnemyBullets() {
+		return this.enemyBullets;
+	}
+
+	public void addBullet(Bullet b, Boolean enemy) {
+		if (enemy)
+			this.enemyBullets.add(b);
+		else
+			this.bullets.add(b);
 	}
 
 	/**
-	 * @return the player's car
+	 * @return the player
 	 */
 	public Player getPlayer() {
 		return this.player;
@@ -125,7 +133,7 @@ public class GameBoard {
 	 * Updates the position of each car
 	 */
 	public void update() {
-		moveUIElements();
+		updateUIElements();
 	}
 
 	/**
@@ -162,49 +170,41 @@ public class GameBoard {
 	 * Iterate through list of cars (without the player car) and update each car's
 	 * position Update player car afterwards separately
 	 */
-	public void moveUIElements() {
+	public void updateUIElements() {
 
 		List<Invader> invaders = getInvaders();
 		List<Bullet> bullets = getBullets();
+		List<Bullet> enemyBullets = getEnemyBullets();
 
 		// maximum x and y values a car can have depending on the size of the game board
 		int maxX = (int) size.getWidth();
 		int maxY = (int) size.getHeight();
 
-		// update the positions of the player car and the autonomous cars
+		// update the positions of the player, the invaders and their bullets
 		for (UIElement invader : invaders) {
 			invader.updatePosition(maxX, maxY);
 		}
+
+		player.updatePosition(maxX, maxY);
 
 		for (UIElement bullet : bullets) {
 			bullet.updatePosition(maxX, maxY);
 		}
 
-		player.updatePosition(maxX, maxY);
+		for (UIElement bullet : enemyBullets) {
+			bullet.updatePosition(maxX, maxY);
+		}
 
-		// iterate through all cars (except player car) and check if it is crunched
-		// for (UIElement invader : invaders) {
+		// iterate through all enemy bullets and see if player was shoot
+		for (UIElement bullet : enemyBullets) {
+			Collision collision = new Collision(player, bullet);
+			if (collision.isCollision) {
+				this.gameWon = false;
+				this.stopGame();
+				audioPlayer.playExplosionSound();
+			}
+		}
 
-		// 	// Create a new collision object
-		// 	// and check if the collision between player car and autonomous car evaluates as
-		// 	// expected
-		// 	Collision collision = new Collision(player, invader);
-
-		// 	if (collision.isCollision) {
-		// 		UIElement winner = collision.evaluate();
-		// 		UIElement loser = collision.evaluateLoser();
-		// 		System.out.println(winner);
-		// 		audioPlayer.playCrashSound();
-
-		// 		if (isWinner()) {
-		// 			this.gameWon = true;
-		// 			this.stopGame();
-		// 		} else if (this.getPlayer().equals(loser)) {
-		// 			this.gameWon = false;
-		// 			this.stopGame();
-		// 		}
-		// 	}
-		// }
 	}
 
 	/**

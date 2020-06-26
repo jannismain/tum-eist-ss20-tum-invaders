@@ -59,10 +59,10 @@ public class InputHandler {
                     player.setSpeed(player.SPEED);
                 } else if (e.getCode() == KeyCode.F) {
                     // Shoot when F is pressed
-                    System.out.println("Shoot!");
                     Bullet b = player.shoot();
+                    gameBoardUI.getGameBoard().getAudioPlayer().playShootSound();
                     // HACK: adding bullet to game
-                    gameBoardUI.getGameBoard().addBullet(b);
+                    gameBoardUI.getGameBoard().addBullet(b, false);
                     gameBoardUI.UiImages.put(b, gameBoardUI.getImage(b.getIconLocation()));
                 }
                 e.consume();

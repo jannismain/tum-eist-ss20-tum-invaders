@@ -1,5 +1,6 @@
 package de.tum.in.ase.eist.gameview;
 
+import de.tum.in.ase.eist.*;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,6 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Random;
+import java.util.List;
 
 import de.tum.in.ase.eist.Dimension2D;
 import de.tum.in.ase.eist.GameBoard;
@@ -45,6 +50,21 @@ public class GameBoardUI extends Canvas implements Runnable {
 
 	public HashMap<UIElement, Image> UiImages;
 
+	// invader shoot timer task
+	private static Timer timer = new Timer();
+	private static Boolean shouldInvaderShoot = false;
+	static class Task extends TimerTask {
+		@Override
+		public void run() {
+			int delay = (1 + new Random().nextInt(4)) * 1000;
+			timer.schedule(new Task(), delay);
+			shouldInvaderShoot = true;
+		}
+
+	}
+	// thread responsible for telling invaders to shoot
+	private TimerTask invaderKillTimer = new Task();
+
 	/**
 	 * Sets up all attributes, starts the mouse steering and sets up all graphics
 	 *
@@ -65,7 +85,18 @@ public class GameBoardUI extends Canvas implements Runnable {
 	@Override
 	public void run() {
 		while (this.gameBoard.isRunning()) {
-			// updates car positions and re-renders graphics
+			if (shouldInvaderShoot) {
+				shouldInvaderShoot = false;
+				List<Invader> invaders = gameBoard.getInvaders();
+				for (Invader invader : invaders) {
+                    // HACK: instantiating enemy bullet here
+					Bullet b = invader.shoot();
+					gameBoard.addBullet(b, true);
+                    // gameBoard.getAudioPlayer().playShootSound();
+                    UiImages.put(b, getImage(b.getIconLocation()));
+				}
+			}
+			// updates UIElements positions and re-renders graphics
 			this.gameBoard.update();
 			// when this.gameBoard.hasWon() is null, do nothing
 			if (this.gameBoard.hasWon() == Boolean.FALSE) {
@@ -82,6 +113,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 				ex.printStackTrace();
 			}
 		}
+
 	}
 
 	/**
@@ -157,6 +189,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 			this.gameBoard.startGame();
 			this.theThread = new Thread(this);
 			this.theThread.start();
+			invaderKillTimer.run();
 			paint(this.graphicsContext);
 			this.toolBar.resetToolBarButtonStatus(true);
 		}
@@ -179,6 +212,10 @@ public class GameBoardUI extends Canvas implements Runnable {
 		paintUIElement(this.gameBoard.getPlayer(), graphics);
 
 		for (UIElement bullet : this.gameBoard.getBullets()) {
+			paintUIElement(bullet, graphics);
+		}
+
+		for (UIElement bullet : this.gameBoard.getEnemyBullets()) {
 			paintUIElement(bullet, graphics);
 		}
 	}
@@ -212,6 +249,8 @@ public class GameBoardUI extends Canvas implements Runnable {
 	public void stopGame() {
 		if (this.gameBoard.isRunning()) {
 			this.gameBoard.stopGame();
+			timer.cancel();
+			invaderKillTimer.cancel();
 			this.toolBar.resetToolBarButtonStatus(false);
 		}
 	}

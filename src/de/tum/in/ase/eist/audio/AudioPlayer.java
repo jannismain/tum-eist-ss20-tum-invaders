@@ -14,7 +14,7 @@ public class AudioPlayer implements AudioPlayerInterface {
 
     private MediaPlayer mediaPlayer;
     private boolean playingBackgroundMusic;
-    public boolean crashSoundPlayed = false;
+    public boolean shootSoundPlayer = false;
 
 	/**
 	 * Constructor, gets the media files from resources and sets the boolean
@@ -31,8 +31,13 @@ public class AudioPlayer implements AudioPlayerInterface {
     }
 
     @Override
-    public String getCrashSoundFilePath() {
-	    return CRASH_MUSIC_FILE;
+    public String getShootSoundFilePath() {
+	    return SHOOT_MUSIC_FILE;
+    }
+
+	@Override
+    public String getExplosionSoundFilePath() {
+	    return EXPLOSION_MUSIC_FILE;
     }
 
     /**
@@ -50,7 +55,7 @@ public class AudioPlayer implements AudioPlayerInterface {
 			this.mediaPlayer.play();
 		}
 	}
-	
+
 	private Media loadAudioFile(String fileName) {
 	    URL musicSourceUrl = getClass().getClassLoader().getResource(fileName);
 	    if(musicSourceUrl == null) {
@@ -74,7 +79,7 @@ public class AudioPlayer implements AudioPlayerInterface {
 	 * Checks if the background music is playing by returning the boolean
 	 * playingBackgroundMusic. This boolean is initially false after the game
 	 * startup and set to true in the playBackgroundMusic() method.
-	 * 
+	 *
 	 * @return true if background music is playing
 	 * @return false if background music is not playing
 	 */
@@ -83,17 +88,21 @@ public class AudioPlayer implements AudioPlayerInterface {
 	}
 
     @Override
-    public void playCrashSound() {
+    public void playShootSound() {
         // define new MediaPlayer variable for Bang Sound
-        MediaPlayer mediaPlayerBang = new MediaPlayer(loadAudioFile(getCrashSoundFilePath()));
+        MediaPlayer mediaPlayerBang = new MediaPlayer(loadAudioFile(getShootSoundFilePath()));
         mediaPlayerBang.play();
         // set boolean Variable to true
-        this.crashSoundPlayed = true;
+        this.shootSoundPlayer = true;
     }
 
-    @Override
-    public boolean getCrashSoundPlayed() {
-        return this.crashSoundPlayed;
+	@Override
+	public void playExplosionSound() {
+        // define new MediaPlayer variable for Bang Sound
+        MediaPlayer mediaPlayerBang = new MediaPlayer(loadAudioFile(getExplosionSoundFilePath()));
+        mediaPlayerBang.play();
+        // set boolean Variable to true
+        this.shootSoundPlayer = true;
     }
 
 }
