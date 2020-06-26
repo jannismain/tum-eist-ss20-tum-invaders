@@ -5,7 +5,6 @@ import java.util.List;
 
 import de.tum.in.ase.eist.audio.AudioPlayerInterface;
 import de.tum.in.ase.eist.UIElement;
-import de.tum.in.ase.eist.Barrier;
 import de.tum.in.ase.eist.Invader;
 import de.tum.in.ase.eist.Collision;
 
@@ -16,14 +15,8 @@ import de.tum.in.ase.eist.Collision;
  */
 public class GameBoard {
 
-	// list of all living invaders
 	private List<Invader> invaders = new ArrayList<>();
 	private List<Bullet> bullets = new ArrayList<>();
-
-	// list of all existing barriers
-	private List<Barrier> barriers = new ArrayList<>();
-
-	// the player object
 	private Player player;
 
 	private AudioPlayerInterface audioPlayer;
@@ -36,8 +29,6 @@ public class GameBoard {
 	private Boolean gameWon;
 
 	public static int NUMBER_OF_INVADERS = 4;
-	public static int NUMBER_OF_BULLETS = NUMBER_OF_INVADERS * 3;
-	public static int NUMBER_OF_BARRIERS = 2;
 
 	/**
 	 * Constructor, creates the gameboard based on size
@@ -58,12 +49,6 @@ public class GameBoard {
 	public void addUIElements() {
 		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
 			this.invaders.add(new Invader(this.size.getWidth(), this.size.getHeight()));
-		}
-		for (int i = 0; i < NUMBER_OF_BULLETS; i++) {
-			this.bullets.add(new Bullet(this.size.getWidth(), this.size.getHeight()));
-		}
-		for (int i = 0; i < NUMBER_OF_BARRIERS; i++) {
-			this.barriers.add(new Barrier(this.size.getWidth(), this.size.getHeight()));
 		}
 	}
 
