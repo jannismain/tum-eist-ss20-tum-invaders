@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * Starts the TumInvaders Application, loads the tool bar and the gameboardUI.
  * This class is the root of the JavaFX Application.
  */
-public class TumInvadersApplication extends Application {
+public class SpaceInvaderApplication extends Application {
 
 	public GameBoardUI gameBoardUI;
 	public Toolbar toolBar; // the tool bar object with start and stop buttons

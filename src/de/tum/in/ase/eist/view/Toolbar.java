@@ -8,7 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.util.Optional;
 
-import de.tum.in.ase.eist.TumInvadersApplication;
+import de.tum.in.ase.eist.SpaceInvaderApplication;
 
 /**
  *
@@ -17,15 +17,15 @@ import de.tum.in.ase.eist.TumInvadersApplication;
  *
  */
 public class Toolbar extends ToolBar {
-    private TumInvadersApplication gameWindow;
-    private Button start;
-    private Button stop;
+    private SpaceInvaderApplication gameWindow;
+    private Button startButton;
+    private Button stopButton;
 
-    public Toolbar(TumInvadersApplication gameWindow) {
-        this.start = new Button("Start");
-        this.stop = new Button("Stop");
+    public Toolbar(SpaceInvaderApplication gameWindow) {
+        this.startButton = new Button("Start");
+        this.stopButton = new Button("Stop");
         initActions();
-        this.getItems().addAll(start, new Separator(), stop);
+        this.getItems().addAll(startButton, new Separator(), stopButton);
         this.setGameWindow(gameWindow);
     }
 
@@ -33,9 +33,9 @@ public class Toolbar extends ToolBar {
      * Initialises the actions
      */
     private void initActions() {
-        this.start.setOnAction(event -> getGameWindow().gameBoardUI.startGame());
+        this.startButton.setOnAction(event -> getGameWindow().gameBoardUI.startGame());
 
-        this.stop.setOnAction(event -> {
+        this.stopButton.setOnAction(event -> {
             Toolbar.this.getGameWindow().gameBoardUI.stopGame();
 
             ButtonType YES = new ButtonType("Yes", ButtonBar.ButtonData.YES);
@@ -60,21 +60,21 @@ public class Toolbar extends ToolBar {
      * @param running Used to disable/enable buttons
      */
     public void resetToolBarButtonStatus(boolean running) {
-        this.start.setDisable(running);
-        this.stop.setDisable(!running);
+        this.startButton.setDisable(running);
+        this.stopButton.setDisable(!running);
     }
 
     /**
      * @return current gameWindow
      */
-    public TumInvadersApplication getGameWindow() {
+    public SpaceInvaderApplication getGameWindow() {
         return this.gameWindow;
     }
 
     /**
      * @param gameWindow New gameWindow to be set
      */
-    public void setGameWindow(TumInvadersApplication gameWindow) {
+    public void setGameWindow(SpaceInvaderApplication gameWindow) {
         this.gameWindow = gameWindow;
     }
 }
