@@ -4,13 +4,12 @@ import de.tum.in.ase.eist.Dimension2D;
 import de.tum.in.ase.eist.Point2D;
 
 /**
- * Abstract class for cars. Objects for this class cannot be instantiated.
+ * Abstract class for elements. Objects for this class cannot be instantiated.
  */
 public abstract class UIElement {
 
-    public int MAX_SPEED = 10;
-    public int MIN_SPEED = 2;
-    protected int speed = this.MIN_SPEED;
+    public int SPEED = 10;
+    protected int speed = this.SPEED;
 
     private String iconLocation;
     protected Point2D position;
@@ -20,10 +19,10 @@ public abstract class UIElement {
     private int direction = 90;
 
     /**
-     * Constructor, taking the maximum coordinates of the game board. Each car gets
+     * Constructor, taking the maximum coordinates of the game board. Each element gets
      * a random X and Y coordinate, a random direction and a random speed
      *
-     * The position of the car cannot be larger then the parameters, i.e. the
+     * The position of the element cannot be larger then the parameters, i.e. the
      * dimensions of the game board
      *
      * @param maxX Maximum x coordinate (width) of the game board
@@ -34,9 +33,9 @@ public abstract class UIElement {
         if (y < getSize().getHeight()) {
             this.position = new Point2D(x, getSize().getHeight());
         }
-    }  
-    
-    // Bu Bullet için eklendi. Width ve Height deðerleri diðer imajlardan farklý olmasý gerektiði için.
+    }
+
+    // This has been added for Bullet. Width and Height values should be different from other images.
     public UIElement(int x, int y, int width, int height) {
         this.position = new Point2D(x, y);
         this.size = new Dimension2D(width, height);
@@ -56,13 +55,9 @@ public abstract class UIElement {
         setDirection(90);
         this.speed = 0;
     }
-    
-    public void resetImage() {
-        this.iconLocation = "";
-    }
 
     /**
-     * Sets the car's direction
+     * Sets the element's direction
      *
      * @param direction
      * @throws IllegalArgumentException
@@ -82,22 +77,8 @@ public abstract class UIElement {
         return this.speed;
     }
 
-    /**
-     * Increments the car's speed, won't exceed the maximum speed
-     */
-    public void incrementSpeed() {
-        if (this.speed < this.MAX_SPEED) {
-            this.speed++;
-        }
-    }
-
-    /**
-     * Decrements the car's speed, won't fall below the minimum speed
-     */
-    public void decrementSpeed() {
-        if (this.speed > this.MIN_SPEED) {
-            this.speed--;
-        }
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public String getIconLocation() {
@@ -105,7 +86,7 @@ public abstract class UIElement {
     }
 
     /**
-     * Sets the image of the car
+     * Sets the image of the UIElement
      *
      * @param iconLocation path of the image file
      * @throws IllegalArgumentException
@@ -122,7 +103,7 @@ public abstract class UIElement {
     }
 
     /**
-     * Sets the car's position
+     * Sets the elements position
      *
      * @param x the position along the x-axes
      * @param y the position along the y-axes
@@ -182,7 +163,7 @@ public abstract class UIElement {
     }
 
     public void move() {
-        this.speed = MAX_SPEED;
+        this.speed = SPEED;
     }
 
 }

@@ -36,8 +36,7 @@ public class GameBoard {
 	 * @param size of the gameboard
 	 */
 	public GameBoard(Dimension2D size) {
-		UIElement playerCar = new Barrier(250, 30);
-		this.player = new Player(playerCar);
+		this.player = new Player();
 		this.size = size;
 		this.addUIElements();
 	}
