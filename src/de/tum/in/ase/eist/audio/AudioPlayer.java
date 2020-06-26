@@ -44,6 +44,11 @@ public class AudioPlayer implements AudioPlayerInterface {
 	    return EXPLOSION_MUSIC_FILE;
     }
 
+	@Override
+    public String getInvaderKilledSoundFilePath() {
+	    return INVADER_KILLED_MUSIC_FILE;
+    }
+
     /**
 	 * Checks if no music is currently running by checking the value of the
 	 * boolean playingBackgroundMusic. Starts playing the background music in a
@@ -93,20 +98,18 @@ public class AudioPlayer implements AudioPlayerInterface {
 
     @Override
     public void playShootSound() {
-        // define new MediaPlayer variable for Bang Sound
-        MediaPlayer mediaPlayerBang = new MediaPlayer(loadAudioFile(getShootSoundFilePath()));
-        mediaPlayerBang.play();
-        // set boolean Variable to true
-        this.shootSoundPlayer = true;
+        new MediaPlayer(loadAudioFile(getShootSoundFilePath())).play();
     }
 
 	@Override
 	public void playExplosionSound() {
-        // define new MediaPlayer variable for Bang Sound
-        MediaPlayer mediaPlayerBang = new MediaPlayer(loadAudioFile(getExplosionSoundFilePath()));
-        mediaPlayerBang.play();
-        // set boolean Variable to true
-        this.shootSoundPlayer = true;
-    }
+        new MediaPlayer(loadAudioFile(getExplosionSoundFilePath())).play();
+	}
+
+	@Override
+	public void playInvaderKilledSound() {
+		new MediaPlayer(loadAudioFile(getInvaderKilledSoundFilePath())).play();
+
+	}
 
 }
