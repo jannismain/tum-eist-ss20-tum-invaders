@@ -1,3 +1,6 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
 package de.tum.in.ase.eist;
 
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ import de.tum.in.ase.eist.Invader;
 import de.tum.in.ase.eist.Collision;
 
 /**
- * Creates all car objects, detects collisions, updates car positions, notifies
+ * Creates all UIElements, detects collisions, updates UIElement positions, notifies
  * player about victory or defeat
  *
  */
@@ -43,8 +46,7 @@ public class GameBoard {
 	}
 
 	/**
-	 * Adds specified number of cars to the cars list, creates new object for each
-	 * car
+	 * Adds specified number of invaders to the invaders list.
 	 */
 	public void addUIElements() {
 		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
@@ -53,11 +55,10 @@ public class GameBoard {
 	}
 
 	/**
-	 * Removes all existing cars from the car list, resets the position of the
-	 * player car Invokes the creation of new car objects by calling addUIElements()
+	 * Removes all existing UIElements, resets their position, creates new UIElements.
 	 */
 	public void resetElements() {
-		this.player.reset(this.player.getPosition().getX(), this.player.getPosition().getY());
+		this.player.reset(225, 20);
 		this.invaders.clear();
 		this.bullets.clear();
 		this.enemyBullets.clear();
@@ -90,7 +91,7 @@ public class GameBoard {
 	}
 
 	/**
-	 * @return list of cars
+	 * @return list of invaders
 	 */
 	public List<Invader> getInvaders() {
 		return this.invaders;
@@ -130,14 +131,14 @@ public class GameBoard {
 	}
 
 	/**
-	 * Updates the position of each car
+	 * Updates the position of each UIElement
 	 */
 	public void update() {
 		updateUIElements();
 	}
 
 	/**
-	 * Starts the game. Cars start to move and background music starts to play.
+	 * Starts the game.
 	 */
 	public void startGame() {
 		// playMusic();
@@ -145,7 +146,7 @@ public class GameBoard {
 	}
 
 	/**
-	 * Stops the game. Cars stop moving and background music stops playing.
+	 * Stops the game.
 	 */
 	public void stopGame() {
 		stopMusic();
@@ -167,8 +168,8 @@ public class GameBoard {
 	}
 
 	/**
-	 * Iterate through list of cars (without the player car) and update each car's
-	 * position Update player car afterwards separately
+	 * Iterate through list of UIElements and update their positions.
+	 * Evaluate if either invader or player are hit by bullets.
 	 */
 	public void updateUIElements() {
 
@@ -176,13 +177,19 @@ public class GameBoard {
 		List<Bullet> bullets = getBullets();
 		List<Bullet> enemyBullets = getEnemyBullets();
 
-		// maximum x and y values a car can have depending on the size of the game board
 		int maxX = (int) size.getWidth();
 		int maxY = (int) size.getHeight();
 
-		// update the positions of the player, the invaders and their bullets
 		for (UIElement invader : invaders) {
 			invader.updatePosition(maxX, maxY);
+			for (UIElement bullet : bullets) {
+				// iterate through all player bullets and see if enemy was shoot
+				if (new Collision(invader, bullet).isCollision) {
+					this.gameWon = true;
+					this.stopGame();
+					audioPlayer.playExplosionSound();
+				}
+			}
 		}
 
 		player.updatePosition(maxX, maxY);
@@ -193,10 +200,7 @@ public class GameBoard {
 
 		for (UIElement bullet : enemyBullets) {
 			bullet.updatePosition(maxX, maxY);
-		}
-
-		// iterate through all enemy bullets and see if player was shoot
-		for (UIElement bullet : enemyBullets) {
+			// iterate through all enemy bullets and see if player was shoot
 			Collision collision = new Collision(player, bullet);
 			if (collision.isCollision) {
 				this.gameWon = false;
@@ -204,7 +208,6 @@ public class GameBoard {
 				audioPlayer.playExplosionSound();
 			}
 		}
-
 	}
 
 	/**

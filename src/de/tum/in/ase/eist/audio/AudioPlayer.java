@@ -1,3 +1,7 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
+
 package de.tum.in.ase.eist.audio;
 
 import javafx.scene.media.Media;

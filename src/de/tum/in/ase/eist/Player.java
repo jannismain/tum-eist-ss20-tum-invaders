@@ -1,9 +1,7 @@
 package de.tum.in.ase.eist;
 
-import de.tum.in.ase.eist.UIElement;
-
 /**
- * This class defines the player. Each player has its own UIElement.
+ * This class defines the player.
  *
  */
 public class Player extends UIElement {
@@ -11,9 +9,7 @@ public class Player extends UIElement {
 	public static String PLAYER_IMAGE_FILE = "Spaceship.png";
 
 	/**
-	 * Constructor that allocates a car to the player
-	 *
-	 * @param car the car that should be the player's car
+	 * Constructor for a Player object
 	 */
 	public Player() {
 		super(225, 20);

@@ -1,3 +1,6 @@
+/**
+ * This class was taken from Bumpers as is
+ */
 package de.tum.in.ase.eist;
 
 import de.tum.in.ase.eist.Dimension2D;
@@ -5,7 +8,7 @@ import de.tum.in.ase.eist.Point2D;
 import de.tum.in.ase.eist.UIElement;
 
 /**
- * This class defines the behavior when two cars collide.
+ * This class defines the behavior when two UIElements collide.
  */
 public class Collision {
 
@@ -20,7 +23,7 @@ public class Collision {
 	}
 
 	/**
-	 * Checks whether two cars have collided. The translation transformation shifts
+	 * Checks whether two elements have collided. The translation transformation shifts
 	 * a node from one place to another along one of the axes relative to its
 	 * initial position.
 	 *
@@ -37,37 +40,5 @@ public class Collision {
 			return false;
 
 		return !(p1.getX() + d1.getWidth() < p2.getX()) && !(p1.getX() > p2.getX() + d2.getWidth());
-	}
-
-	/**
-	 * Evaluates winner of the collision
-	 *
-	 * @return winner Car
-	 */
-	public UIElement evaluate() {
-
-		Point2D positionelement1 = this.element1.getPosition();
-		Point2D positionelement2 = this.element2.getPosition();
-
-		UIElement winnerCar = null;
-		if (positionelement1.getX() < positionelement2.getX()) {
-			winnerCar = this.element2;
-		} else {
-			winnerCar = this.element1;
-		}
-		return winnerCar;
-	}
-
-	/**
-	 * Evaluates loser of the collision
-	 *
-	 * @return loser Car
-	 */
-	public UIElement evaluateLoser() {
-		UIElement winner = this.evaluate();
-		if (this.element1.equals(winner)) {
-			return this.element2;
-		}
-		return this.element1;
 	}
 }

@@ -1,3 +1,6 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
 package de.tum.in.ase.eist.gameview;
 
 import javafx.scene.control.*;
@@ -53,7 +56,7 @@ public class Toolbar extends ToolBar {
 
     /**
      * Resets the toolbar button status
-     * 
+     *
      * @param running Used to disable/enable buttons
      */
     public void resetToolBarButtonStatus(boolean running) {

@@ -1,3 +1,7 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
+
 package de.tum.in.ase.eist;
 
 import de.tum.in.ase.eist.gameview.GameBoardUI;
@@ -15,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class TumInvadersApplication extends Application {
 
-	public GameBoardUI gameBoardUI; // the user interface object, where cars drive
+	public GameBoardUI gameBoardUI;
 	public Toolbar toolBar; // the tool bar object with start and stop buttons
 
 	/**

@@ -1,3 +1,6 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
 package de.tum.in.ase.eist.gameview;
 
 import de.tum.in.ase.eist.*;
@@ -25,7 +28,7 @@ import de.tum.in.ase.eist.UIElement;
 import de.tum.in.ase.eist.controller.InputHandler;
 
 /**
- * This class implements the user interface for steering the player car. The
+ * This class implements the user interface for controlling the player. The
  * user interface is implemented as a Thread that is started by clicking the
  * start button on the tool bar and stops by the stop button.
  *
@@ -139,9 +142,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Removes all existing cars from the game board and re-adds them. Status bar is
-	 * set to default value. Player car is reset to default starting position.
-	 * Renders graphics.
+	 * Resets all UIElements and renders graphics.
 	 */
 	public void gameSetup() {
 		this.gameBoard = new GameBoard(this.size);
@@ -159,19 +160,19 @@ public class GameBoardUI extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Sets the car's image
+	 * Set and image
 	 *
-	 * @param carImageFilePath: an image file path that needs to be available in the
+	 * @param ImageFilePath: an image file path that needs to be available in the
 	 *                          resources folder of the project
 	 */
-	public Image getImage(String carImageFilePath) {
+	public Image getImage(String ImageFilePath) {
 		try {
-			URL carImageUrl = getClass().getClassLoader().getResource(carImageFilePath);
-			if (carImageUrl == null) {
+			URL ImageUrl = getClass().getClassLoader().getResource(ImageFilePath);
+			if (ImageUrl == null) {
 				throw new RuntimeException(
 						"Please ensure that your resources folder contains the appropriate files for this exercise.");
 			}
-			InputStream inputStream = carImageUrl.openStream();
+			InputStream inputStream = ImageUrl.openStream();
 			return new Image(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -181,7 +182,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 
 	/**
 	 * Starts the GameBoardUI Thread, if it wasn't running. Starts the game board,
-	 * which causes the cars to change their positions (i.e. move). Renders graphics
+	 * which causes the UIElements to move. Renders graphics
 	 * and updates tool bar status.
 	 */
 	public void startGame() {
@@ -196,8 +197,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Render the graphics of the whole game by iterating through the cars of the
-	 * game board at render each of them individually.
+	 * Render the graphics of the whole game.
 	 *
 	 * @param graphics used to draw changes
 	 */
@@ -205,10 +205,10 @@ public class GameBoardUI extends Canvas implements Runnable {
 		graphics.setFill(backgroundColor);
 		graphics.fillRect(0, 0, getWidth(), getHeight());
 
-		for (UIElement car : this.gameBoard.getInvaders()) {
-			paintUIElement(car, graphics);
+		for (UIElement invader : this.gameBoard.getInvaders()) {
+			paintUIElement(invader, graphics);
 		}
-		// render player car
+		// render player
 		paintUIElement(this.gameBoard.getPlayer(), graphics);
 
 		for (UIElement bullet : this.gameBoard.getBullets()) {
@@ -221,9 +221,9 @@ public class GameBoardUI extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Show image of a car at the current position of the car.
+	 * Show image of a UIElement at its current position.
 	 *
-	 * @param element      to be drawn
+	 * @param element to be drawn
 	 * @param graphics used to draw changes
 	 */
 	private void paintUIElement(UIElement element, GraphicsContext graphics) {
@@ -235,7 +235,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Converts position of car to position on the canvas
+	 * Converts position of UIElement to position on the canvas
 	 *
 	 * @param toConvert the point to be converted
 	 */
@@ -255,13 +255,6 @@ public class GameBoardUI extends Canvas implements Runnable {
 		}
 	}
 
-	/**
-	 * Method used to display alerts in moveCars() Java 8 Lambda Functions: java 8
-	 * lambda function without arguments Platform.runLater Function:
-	 * https://docs.oracle.com/javase/8/javafx/api/javafx/application/Platform.html
-	 *
-	 * @param message you want to display as a String
-	 */
 	public void showAsyncAlert(String message) {
 		Platform.runLater(() -> {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);

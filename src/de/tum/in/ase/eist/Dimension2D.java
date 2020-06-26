@@ -1,3 +1,7 @@
+/**
+ * This class was taken from Bumpers as is
+ */
+
 package de.tum.in.ase.eist;
 
 public class Dimension2D {

@@ -1,3 +1,7 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
+
 package de.tum.in.ase.eist;
 
 import de.tum.in.ase.eist.Dimension2D;

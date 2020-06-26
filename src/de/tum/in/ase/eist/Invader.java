@@ -5,7 +5,7 @@ public class Invader extends UIElement {
 	public static String INVADER_IMAGE_FILE = "Invader.png";
 
 	/**
-	 * Constructor for a Invader
+	 * Constructor for an Invader
 	 *
 	 * @param maxX Maximum x coordinate (width) of the game board
 	 * @param maxY Maximum y coordinate (height) of the game board

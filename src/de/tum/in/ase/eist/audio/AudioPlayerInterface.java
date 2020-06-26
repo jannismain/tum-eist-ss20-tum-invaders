@@ -1,3 +1,6 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
 package de.tum.in.ase.eist.audio;
 
 public interface AudioPlayerInterface {

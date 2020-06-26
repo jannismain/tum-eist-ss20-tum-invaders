@@ -1,3 +1,6 @@
+/**
+ * This class was taken from Bumpers and adapted for SpaceInvaders
+ */
 package de.tum.in.ase.eist.controller;
 
 import de.tum.in.ase.eist.UIElement;
