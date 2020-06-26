@@ -8,7 +8,6 @@ import de.tum.in.ase.eist.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.tum.in.ase.eist.audio.AudioPlayerInterface;
 import de.tum.in.ase.eist.UIElement;
 import de.tum.in.ase.eist.Invader;
 import de.tum.in.ase.eist.Collision;
@@ -25,7 +24,7 @@ public class GameBoard {
 	private List<Bullet> enemyBullets = new ArrayList<>();
 	private Player player;
 
-	private AudioPlayerInterface audioPlayer;
+	private AudioPlayer audioPlayer;
 
 	private Dimension2D size;
 
@@ -124,11 +123,11 @@ public class GameBoard {
 	/**
 	 * @return the gameboard's instance of AudioPlayer
 	 */
-	public AudioPlayerInterface getAudioPlayer() {
+	public AudioPlayer getAudioPlayer() {
 		return this.audioPlayer;
 	}
 
-	public void setAudioPlayer(AudioPlayerInterface audioPlayer) {
+	public void setAudioPlayer(AudioPlayer audioPlayer) {
 		this.audioPlayer = audioPlayer;
 	}
 

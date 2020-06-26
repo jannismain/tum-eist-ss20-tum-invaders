@@ -23,7 +23,7 @@ import java.util.List;
 import de.tum.in.ase.eist.Dimension2D;
 import de.tum.in.ase.eist.controller.GameBoard;
 import de.tum.in.ase.eist.Point2D;
-import de.tum.in.ase.eist.audio.AudioPlayer;
+import de.tum.in.ase.eist.controller.AudioPlayer;
 import de.tum.in.ase.eist.UIElement;
 import de.tum.in.ase.eist.controller.InputHandler;
 
@@ -95,7 +95,6 @@ public class GameBoardUI extends Canvas implements Runnable {
                     // HACK: instantiating enemy bullet here
 					Bullet b = invader.shoot();
 					gameBoard.addBullet(b, true);
-                    // gameBoard.getAudioPlayer().playShootSound();
                     UiImages.put(b, getImage(b.getIconLocation()));
 				}
 			}
