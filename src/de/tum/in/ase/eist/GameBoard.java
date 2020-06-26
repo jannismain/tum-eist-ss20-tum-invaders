@@ -36,6 +36,7 @@ public class GameBoard {
 	private Boolean gameWon;
 
 	public static int NUMBER_OF_INVADERS = 4;
+	public static int NUMBER_OF_BULLETS = NUMBER_OF_INVADERS * 3;
 	public static int NUMBER_OF_BARRIERS = 2;
 
 	/**
@@ -58,7 +59,7 @@ public class GameBoard {
 		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
 			this.invaders.add(new Invader(this.size.getWidth(), this.size.getHeight()));
 		}
-		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
+		for (int i = 0; i < NUMBER_OF_BULLETS; i++) {
 			this.bullets.add(new Bullet(this.size.getWidth(), this.size.getHeight()));
 		}
 		for (int i = 0; i < NUMBER_OF_BARRIERS; i++) {
@@ -188,6 +189,13 @@ public class GameBoard {
 		
 		for (UIElement bullet : bullets) {
 			bullet.updatePosition(maxX, maxY);
+		}
+		
+		// Bulletlar boardun dýþýna çýktýysa silelim.
+		for(int i = bullets.size()-1; i >= 0; i--)
+		{
+			if (bullets.get(i).getSpeed() == 0)
+				bullets.remove(i);
 		}
 
 		player.updatePosition(maxX, maxY);

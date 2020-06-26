@@ -1,8 +1,12 @@
 package de.tum.in.ase.eist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Invader extends UIElement implements ShootingUIElement {
 
 	public static String INVADER_IMAGE_FILE = "Invader.png";
+	private int bulletCount = 3;
 
 	/**
 	 * Constructor for a Invader
@@ -20,6 +24,14 @@ public class Invader extends UIElement implements ShootingUIElement {
 	@Override
 	public void shoot() {
 		// TODO Auto-generated method stub
-		
+		bulletCount--;
+	}
+	
+	public int getBulletCount() {
+		return bulletCount;
+	}
+
+	public void setBulletCount(int bulletCount) {
+		this.bulletCount = bulletCount;
 	}
 }

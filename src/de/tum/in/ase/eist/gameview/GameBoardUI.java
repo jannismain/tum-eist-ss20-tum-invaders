@@ -178,6 +178,10 @@ public class GameBoardUI extends Canvas implements Runnable {
 		}
 		// render player car
 		paintCar(this.gameBoard.getPlayer(), graphics);
+		
+		for (UIElement car : this.gameBoard.getBullets()) {
+			paintCar(car, graphics);
+		}
 	}
 
 	/**
