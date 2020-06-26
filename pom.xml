@@ -73,7 +73,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>de.tum.in.ase.eist.TumInvaders</mainClass>
+							<mainClass>de.tum.in.ase.eist.SpaceInvader</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
