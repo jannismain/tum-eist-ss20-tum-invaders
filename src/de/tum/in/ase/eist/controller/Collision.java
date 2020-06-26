@@ -1,7 +1,10 @@
 /**
  * This class was taken from Bumpers and adapted for Space Invader
  */
-package de.tum.in.ase.eist;
+package de.tum.in.ase.eist.controller;
+
+import de.tum.in.ase.eist.view.*;
+import de.tum.in.ase.eist.view.geometry.*;
 
 /**
  * This class defines the behavior when two UIElements collide.

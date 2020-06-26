@@ -1,4 +1,4 @@
-package de.tum.in.ase.eist;
+package de.tum.in.ase.eist.view;
 
 public class Invader extends UIElement {
 

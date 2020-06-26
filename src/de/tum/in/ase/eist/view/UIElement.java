@@ -2,7 +2,9 @@
  * This class was taken from Bumpers and adapted for SpaceInvaders
  */
 
-package de.tum.in.ase.eist;
+package de.tum.in.ase.eist.view;
+
+import de.tum.in.ase.eist.view.geometry.*;
 
 /**
  * Abstract class for elements. Objects for this class cannot be instantiated.

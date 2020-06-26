@@ -2,7 +2,7 @@
  * This class was taken from Bumpers as is
  */
 
-package de.tum.in.ase.eist;
+package de.tum.in.ase.eist.view.geometry;
 
 public class Point2D {
 

@@ -3,14 +3,11 @@
  */
 package de.tum.in.ase.eist.controller;
 
-import de.tum.in.ase.eist.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import de.tum.in.ase.eist.UIElement;
-import de.tum.in.ase.eist.Invader;
-import de.tum.in.ase.eist.Collision;
+import de.tum.in.ase.eist.view.*;
+import de.tum.in.ase.eist.view.geometry.*;
 
 /**
  * Creates all UIElements, detects collisions, updates UIElement positions, notifies

@@ -1,7 +1,8 @@
 /**
  * This class was taken from Bumpers and adapted for SpaceInvaders
  */
-package de.tum.in.ase.eist;
+package de.tum.in.ase.eist.view;
+import de.tum.in.ase.eist.view.geometry.Point2D;
 
 public class Bullet extends UIElement {
 

@@ -3,7 +3,6 @@
  */
 package de.tum.in.ase.eist.view;
 
-import de.tum.in.ase.eist.*;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,12 +19,8 @@ import java.util.TimerTask;
 import java.util.Random;
 import java.util.List;
 
-import de.tum.in.ase.eist.Dimension2D;
-import de.tum.in.ase.eist.controller.GameBoard;
-import de.tum.in.ase.eist.Point2D;
-import de.tum.in.ase.eist.controller.AudioPlayer;
-import de.tum.in.ase.eist.UIElement;
-import de.tum.in.ase.eist.controller.InputHandler;
+import de.tum.in.ase.eist.controller.*;
+import de.tum.in.ase.eist.view.geometry.*;
 
 /**
  * This class implements the user interface for controlling the player. The
@@ -150,7 +145,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 		this.heightProperty().set(this.size.getHeight());
 		this.size = new Dimension2D(getWidth(), getHeight());
 		this.UiImages = new HashMap<>();
-		this.keyboardSteering = new InputHandler(this, this.gameBoard.getPlayer());
+		this.keyboardSteering = new InputHandler(this);
 		this.gameBoard.resetElements();
 		this.gameBoard.getInvaders().forEach((invader -> this.UiImages.put(invader, getImage(invader.getIconLocation()))));
 		this.UiImages.put(this.gameBoard.getPlayer(), this.getImage(this.gameBoard.getPlayer().getIconLocation()));

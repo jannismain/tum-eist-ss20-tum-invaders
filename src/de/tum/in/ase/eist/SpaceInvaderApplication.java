@@ -53,7 +53,7 @@ public class SpaceInvaderApplication extends Application {
 		// Need to add keyHandler to the main scene
 		scene.addEventHandler(KeyEvent.KEY_PRESSED, this.gameBoardUI.getInputHandler().getKeyHandler());
 		scene.addEventHandler(KeyEvent.KEY_RELEASED, this.gameBoardUI.getInputHandler().getKeyHandler());
-		primaryStage.setTitle("TumInvaders");
+		primaryStage.setTitle("Space Invader");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

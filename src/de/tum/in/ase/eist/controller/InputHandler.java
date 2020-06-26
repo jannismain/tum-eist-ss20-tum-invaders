@@ -3,13 +3,11 @@
  */
 package de.tum.in.ase.eist.controller;
 
-import de.tum.in.ase.eist.UIElement;
-import de.tum.in.ase.eist.view.GameBoardUI;
-import de.tum.in.ase.eist.Bullet;
-import de.tum.in.ase.eist.Player;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
+import de.tum.in.ase.eist.view.*;
 
 /**
  * This class is responsible for the handling the MOUSE_PRESSED Event, i.e. the
@@ -27,11 +25,11 @@ public class InputHandler {
      * @param gameBoardUI
      * @param player
      */
-    public InputHandler(GameBoardUI gameBoardUI, Player player) {
-        this.player = player;
+    public InputHandler(GameBoardUI gameBoardUI) {
         this.gameBoardUI = gameBoardUI;
-        this.gameBoardUI.addEventHandler(KeyEvent.KEY_PRESSED, this.keyHandler);
-        this.gameBoardUI.addEventHandler(KeyEvent.KEY_RELEASED, this.keyHandler);
+        this.player = gameBoardUI.getGameBoard().getPlayer();
+        // this.gameBoardUI.addEventHandler(KeyEvent.KEY_PRESSED, this.keyHandler);
+        // this.gameBoardUI.addEventHandler(KeyEvent.KEY_RELEASED, this.keyHandler);
     }
 
     public UIElement getPlayer() {
