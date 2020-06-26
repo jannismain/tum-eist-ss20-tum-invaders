@@ -50,7 +50,6 @@ public class InputHandler {
 
         @Override
         public void handle(KeyEvent e) {
-            System.out.println("Pressed: " + e.getCode().getName() + " (" + e.getCode() + ")");
             if (e.getEventType() == KeyEvent.KEY_PRESSED) {
                 if (e.getCode() == KeyCode.K) {
                     // Move right when K is pressed
@@ -72,7 +71,6 @@ public class InputHandler {
             } else if (e.getEventType() == KeyEvent.KEY_RELEASED
                     && (e.getCode() == KeyCode.J || e.getCode() == KeyCode.K)) {
                 // Stop moving if J or K are released
-                System.out.println("Stop Moving");
                 player.setSpeed(0);
                 e.consume();
             }
