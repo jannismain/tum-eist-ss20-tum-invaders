@@ -1,6 +1,7 @@
 package de.tum.in.ase.eist.controller;
 
 import de.tum.in.ase.eist.UIElement;
+import de.tum.in.ase.eist.Bullet;
 import de.tum.in.ase.eist.Player;
 import de.tum.in.ase.eist.gameview.GameBoardUI;
 import javafx.event.EventHandler;
@@ -14,7 +15,7 @@ import javafx.scene.input.KeyEvent;
 
 public class InputHandler {
 
-    private UIElement player;
+    private Player player;
     private GameBoardUI gameBoardUI;
 
     /**
@@ -51,21 +52,25 @@ public class InputHandler {
                 if (e.getCode() == KeyCode.K) {
                     // Move right when K is pressed
                     player.setDirection(90);
-                    player.move();
+                    player.setSpeed(player.SPEED);
                 } else if (e.getCode() == KeyCode.J) {
                     // Move left when J is pressed
                     player.setDirection(270);
-                    player.move();
+                    player.setSpeed(player.SPEED);
                 } else if (e.getCode() == KeyCode.F) {
                     // Shoot when F is pressed
                     System.out.println("Shoot!");
+                    Bullet b = player.shoot();
+                    // HACK: adding bullet to game
+                    gameBoardUI.getGameBoard().addBullet(b);
+                    gameBoardUI.UiImages.put(b, gameBoardUI.getImage(b.getIconLocation()));
                 }
                 e.consume();
             } else if (e.getEventType() == KeyEvent.KEY_RELEASED
                     && (e.getCode() == KeyCode.J || e.getCode() == KeyCode.K)) {
                 // Stop moving if J or K are released
                 System.out.println("Stop Moving");
-                player.stop();
+                player.setSpeed(0);
                 e.consume();
             }
         }

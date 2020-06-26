@@ -43,7 +43,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	// user control objects
 	private InputHandler keyboardSteering;
 
-	private HashMap<UIElement, Image> carImages;
+	public HashMap<UIElement, Image> UiImages;
 
 	/**
 	 * Sets up all attributes, starts the mouse steering and sets up all graphics
@@ -117,12 +117,11 @@ public class GameBoardUI extends Canvas implements Runnable {
 		this.widthProperty().set(this.size.getWidth());
 		this.heightProperty().set(this.size.getHeight());
 		this.size = new Dimension2D(getWidth(), getHeight());
-		this.carImages = new HashMap<>();
+		this.UiImages = new HashMap<>();
 		this.keyboardSteering = new InputHandler(this, this.gameBoard.getPlayer());
 		this.gameBoard.resetElements();
-		this.gameBoard.getInvaders().forEach((car -> this.carImages.put(car, getImage(car.getIconLocation()))));
-		this.gameBoard.getBullets().forEach((car -> this.carImages.put(car, getImage(car.getIconLocation()))));
-		this.carImages.put(this.gameBoard.getPlayer(), this.getImage(this.gameBoard.getPlayer().getIconLocation()));
+		this.gameBoard.getInvaders().forEach((invader -> this.UiImages.put(invader, getImage(invader.getIconLocation()))));
+		this.UiImages.put(this.gameBoard.getPlayer(), this.getImage(this.gameBoard.getPlayer().getIconLocation()));
 		paint(this.graphicsContext);
 		this.toolBar.resetToolBarButtonStatus(false);
 	}
@@ -133,7 +132,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	 * @param carImageFilePath: an image file path that needs to be available in the
 	 *                          resources folder of the project
 	 */
-	private Image getImage(String carImageFilePath) {
+	public Image getImage(String carImageFilePath) {
 		try {
 			URL carImageUrl = getClass().getClassLoader().getResource(carImageFilePath);
 			if (carImageUrl == null) {
@@ -174,28 +173,28 @@ public class GameBoardUI extends Canvas implements Runnable {
 		graphics.fillRect(0, 0, getWidth(), getHeight());
 
 		for (UIElement car : this.gameBoard.getInvaders()) {
-			paintCar(car, graphics);
+			paintUIElement(car, graphics);
 		}
 		// render player car
-		paintCar(this.gameBoard.getPlayer(), graphics);
-		
-		for (UIElement car : this.gameBoard.getBullets()) {
-			paintCar(car, graphics);
+		paintUIElement(this.gameBoard.getPlayer(), graphics);
+
+		for (UIElement bullet : this.gameBoard.getBullets()) {
+			paintUIElement(bullet, graphics);
 		}
 	}
 
 	/**
 	 * Show image of a car at the current position of the car.
 	 *
-	 * @param car      to be drawn
+	 * @param element      to be drawn
 	 * @param graphics used to draw changes
 	 */
-	private void paintCar(UIElement car, GraphicsContext graphics) {
-		Point2D carPosition = car.getPosition();
-		Point2D canvasPosition = convertPosition(carPosition);
+	private void paintUIElement(UIElement element, GraphicsContext graphics) {
+		Point2D position = element.getPosition();
+		Point2D canvasPosition = convertPosition(position);
 
-		graphics.drawImage(this.carImages.get(car), canvasPosition.getX(), canvasPosition.getY(),
-				car.getSize().getWidth(), car.getSize().getHeight());
+		graphics.drawImage(this.UiImages.get(element), canvasPosition.getX(), canvasPosition.getY(),
+				element.getSize().getWidth(), element.getSize().getHeight());
 	}
 
 	/**

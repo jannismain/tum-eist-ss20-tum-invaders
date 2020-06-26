@@ -93,9 +93,14 @@ public class GameBoard {
 	public List<Invader> getInvaders() {
 		return this.invaders;
 	}
-	
+
 	public List<Bullet> getBullets() {
 		return this.bullets;
+	}
+
+	public void addBullet(Bullet b) {
+		this.bullets.add(b);
+		System.out.println("Bullet created!");
 	}
 
 	/**
@@ -120,7 +125,7 @@ public class GameBoard {
 	 * Updates the position of each car
 	 */
 	public void update() {
-		moveInvaders();
+		moveUIElements();
 	}
 
 	/**
@@ -157,7 +162,7 @@ public class GameBoard {
 	 * Iterate through list of cars (without the player car) and update each car's
 	 * position Update player car afterwards separately
 	 */
-	public void moveInvaders() {
+	public void moveUIElements() {
 
 		List<Invader> invaders = getInvaders();
 		List<Bullet> bullets = getBullets();
@@ -170,43 +175,36 @@ public class GameBoard {
 		for (UIElement invader : invaders) {
 			invader.updatePosition(maxX, maxY);
 		}
-		
+
 		for (UIElement bullet : bullets) {
 			bullet.updatePosition(maxX, maxY);
-		}
-		
-		// Bulletlar boardun dýþýna çýktýysa silelim.
-		for(int i = bullets.size()-1; i >= 0; i--)
-		{
-			if (bullets.get(i).getSpeed() == 0)
-				bullets.remove(i);
 		}
 
 		player.updatePosition(maxX, maxY);
 
 		// iterate through all cars (except player car) and check if it is crunched
-		for (UIElement invader : invaders) {
+		// for (UIElement invader : invaders) {
 
-			// Create a new collision object
-			// and check if the collision between player car and autonomous car evaluates as
-			// expected
-			Collision collision = new Collision(player, invader);
+		// 	// Create a new collision object
+		// 	// and check if the collision between player car and autonomous car evaluates as
+		// 	// expected
+		// 	Collision collision = new Collision(player, invader);
 
-			if (collision.isCollision) {
-				UIElement winner = collision.evaluate();
-				UIElement loser = collision.evaluateLoser();
-				System.out.println(winner);
-				audioPlayer.playCrashSound();
+		// 	if (collision.isCollision) {
+		// 		UIElement winner = collision.evaluate();
+		// 		UIElement loser = collision.evaluateLoser();
+		// 		System.out.println(winner);
+		// 		audioPlayer.playCrashSound();
 
-				if (isWinner()) {
-					this.gameWon = true;
-					this.stopGame();
-				} else if (this.getPlayer().equals(loser)) {
-					this.gameWon = false;
-					this.stopGame();
-				}
-			}
-		}
+		// 		if (isWinner()) {
+		// 			this.gameWon = true;
+		// 			this.stopGame();
+		// 		} else if (this.getPlayer().equals(loser)) {
+		// 			this.gameWon = false;
+		// 			this.stopGame();
+		// 		}
+		// 	}
+		// }
 	}
 
 	/**
