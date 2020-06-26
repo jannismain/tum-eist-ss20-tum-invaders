@@ -54,11 +54,11 @@ public class InputHandler {
                 if (e.getCode() == KeyCode.K) {
                     // Move right when K is pressed
                     player.setDirection(90);
-                    player.setSpeed(player.SPEED);
+                    player.setSpeed(10);
                 } else if (e.getCode() == KeyCode.J) {
                     // Move left when J is pressed
                     player.setDirection(270);
-                    player.setSpeed(player.SPEED);
+                    player.setSpeed(10);
                 } else if (e.getCode() == KeyCode.F) {
                     // Shoot when F is pressed
                     Bullet b = player.shoot();

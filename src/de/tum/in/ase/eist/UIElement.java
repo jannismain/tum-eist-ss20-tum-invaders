@@ -4,55 +4,40 @@
 
 package de.tum.in.ase.eist;
 
-import de.tum.in.ase.eist.Dimension2D;
-import de.tum.in.ase.eist.Point2D;
-
 /**
  * Abstract class for elements. Objects for this class cannot be instantiated.
  */
 public abstract class UIElement {
 
-    public int SPEED = 10;
-    protected int speed = this.SPEED;
-
-    private String iconLocation;
     protected Point2D position;
-    private Dimension2D size = new Dimension2D(50, 25);
+    private Dimension2D size;
+    private String iconLocation;
 
     // the direction is seen as degree within a circle
     private int direction = 90;
+    public int speed = 10;
 
     /**
-     * Constructor, taking the maximum coordinates of the game board. Each element gets
-     * a random X and Y coordinate, a random direction and a random speed
+     * Constructor, taking x and y coordinates where UIElement shall be drawn.
      *
-     * The position of the element cannot be larger then the parameters, i.e. the
-     * dimensions of the game board
-     *
-     * @param maxX Maximum x coordinate (width) of the game board
-     * @param maxY Maximum y coordinate (height) of the game board
+     * @param x x coordinate
+     * @param y y coordinate
      */
     public UIElement(int x, int y) {
-        this.position = new Point2D(x, y);
-        if (y < getSize().getHeight()) {
-            this.position = new Point2D(x, getSize().getHeight());
-        }
+        this(x, y, 50, 25);
     }
 
-    // This has been added for Bullet. Width and Height values should be different from other images.
+    /**
+     * Special Constructor with custom width and height.
+     */
     public UIElement(int x, int y, int width, int height) {
         this.position = new Point2D(x, y);
         this.size = new Dimension2D(width, height);
-        if (y < getSize().getHeight()) {
-            this.position = new Point2D(x, getSize().getHeight());
-        }
     }
 
     /**
      * The element's position is reset to (x,y). The speed is set to 0 and the
      * directions points to 90 degrees.
-     *
-     * @param maxY Top left corner of the game board
      */
     public void reset(int x, int y) {
         this.position = new Point2D(x, y);
@@ -160,14 +145,6 @@ public abstract class UIElement {
                 this.direction = 360 + this.direction;
             }
         }
-    }
-
-    public void stop() {
-        this.speed = 0;
-    }
-
-    public void move() {
-        this.speed = SPEED;
     }
 
 }
