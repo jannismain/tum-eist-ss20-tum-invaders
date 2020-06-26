@@ -20,7 +20,7 @@ import de.tum.in.ase.eist.Collision;
 public class GameBoard {
 
 	private List<Invader> invaders = new ArrayList<>();
-	private List<Bullet> bullets = new ArrayList<>();
+	private List<Bullet> playerBullets = new ArrayList<>();
 	private List<Bullet> enemyBullets = new ArrayList<>();
 	private Player player;
 
@@ -43,13 +43,13 @@ public class GameBoard {
 	public GameBoard(Dimension2D size) {
 		this.player = new Player();
 		this.size = size;
-		this.addUIElements();
+		this.addInvaders();
 	}
 
 	/**
 	 * Adds specified number of invaders to the invaders list.
 	 */
-	public void addUIElements() {
+	public void addInvaders() {
 		for (int i = 0; i < NUMBER_OF_INVADERS; i++) {
 			this.invaders.add(new Invader(this.size.getWidth(), this.size.getHeight()));
 		}
@@ -61,9 +61,9 @@ public class GameBoard {
 	public void resetElements() {
 		this.player.reset(225, 20);
 		this.invaders.clear();
-		this.bullets.clear();
+		this.playerBullets.clear();
 		this.enemyBullets.clear();
-		addUIElements();
+		addInvaders();
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class GameBoard {
 	}
 
 	public List<Bullet> getBullets() {
-		return this.bullets;
+		return this.playerBullets;
 	}
 
 	public List<Bullet> getEnemyBullets() {
@@ -110,7 +110,7 @@ public class GameBoard {
 		if (enemy)
 			this.enemyBullets.add(b);
 		else
-			this.bullets.add(b);
+			this.playerBullets.add(b);
 	}
 
 	/**
@@ -132,13 +132,6 @@ public class GameBoard {
 	}
 
 	/**
-	 * Updates the position of each UIElement
-	 */
-	public void update() {
-		updateUIElements();
-	}
-
-	/**
 	 * Starts the game.
 	 */
 	public void startGame() {
@@ -150,7 +143,7 @@ public class GameBoard {
 	 * Stops the game.
 	 */
 	public void stopGame() {
-		stopMusic();
+		// stopMusic();
 		this.isRunning = false;
 	}
 
@@ -172,7 +165,7 @@ public class GameBoard {
 	 * Iterate through list of UIElements and update their positions.
 	 * Evaluate if either invader or player are hit by bullets.
 	 */
-	public void updateUIElements() {
+	public void update() {
 
 		List<Invader> invaders = getInvaders();
 		List<Bullet> bullets = getBullets();
