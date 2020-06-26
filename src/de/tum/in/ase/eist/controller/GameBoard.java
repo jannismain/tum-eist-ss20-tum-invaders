@@ -187,7 +187,7 @@ public class GameBoard {
 				if (new Collision(invader, bullet).isCollision) {
 					this.gameWon = true;
 					this.stopGame();
-					audioPlayer.playExplosionSound();
+					audioPlayer.playInvaderKilledSound();
 				}
 			}
 		}

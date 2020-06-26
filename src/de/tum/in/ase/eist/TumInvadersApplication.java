@@ -4,8 +4,7 @@
 
 package de.tum.in.ase.eist;
 
-import de.tum.in.ase.eist.gameview.GameBoardUI;
-import de.tum.in.ase.eist.gameview.Toolbar;
+import de.tum.in.ase.eist.view.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

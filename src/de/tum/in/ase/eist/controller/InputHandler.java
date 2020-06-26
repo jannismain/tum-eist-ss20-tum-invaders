@@ -4,9 +4,9 @@
 package de.tum.in.ase.eist.controller;
 
 import de.tum.in.ase.eist.UIElement;
+import de.tum.in.ase.eist.view.GameBoardUI;
 import de.tum.in.ase.eist.Bullet;
 import de.tum.in.ase.eist.Player;
-import de.tum.in.ase.eist.gameview.GameBoardUI;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

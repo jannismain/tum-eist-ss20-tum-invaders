@@ -1,7 +1,7 @@
 /**
  * This class was taken from Bumpers and adapted for SpaceInvaders
  */
-package de.tum.in.ase.eist.gameview;
+package de.tum.in.ase.eist.view;
 
 import de.tum.in.ase.eist.*;
 import javafx.application.Platform;
