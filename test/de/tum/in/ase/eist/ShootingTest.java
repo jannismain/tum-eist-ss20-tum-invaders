@@ -26,7 +26,7 @@ public class ShootingTest {
     public void testInvaderBulletDown() {
     	Invader invader = new Invader(20,250);
         Bullet bullet = invader.shoot();
-        assertEquals(invader.getPosition().getY()+(invader.getSize().getHeight()), bullet.getPosition().getY());
+        assertEquals(invader.getPosition().getY()-(invader.getSize().getHeight()), bullet.getPosition().getY());
     }
     
     
