@@ -12,23 +12,30 @@ public class ShootingTest {
     public void testBulletPositionPlayer() {
         Player player = new Player();
         Bullet bullet = player.shoot();
-        assertEquals(player.getPosition().getX()+(player.getSize().getWidth()/2)-1, bullet.getPosition().getX());
+        assertEquals(player.getPosition().getX() + (player.getSize().getWidth() / 2) - 1, bullet.getPosition().getX());
     }
-    
+
     @Test
     public void testBulletPositionInvader() {
-    	Invader invader = new Invader(20,250);
+        Invader invader = new Invader(20, 250);
         Bullet bullet = invader.shoot();
-        assertEquals(invader.getPosition().getX()+(invader.getSize().getWidth()/2), bullet.getPosition().getX());
+        assertEquals(invader.getPosition().getX() + (invader.getSize().getWidth() / 2), bullet.getPosition().getX());
     }
-    
+
     @Test
     public void testInvaderBulletDown() {
-    	Invader invader = new Invader(20,250);
+        Invader invader = new Invader(20, 250);
         Bullet bullet = invader.shoot();
-        assertEquals(invader.getPosition().getY()-(invader.getSize().getHeight()), bullet.getPosition().getY());
+        int downDirection = 180;
+        assertEquals(bullet.getDirection(), downDirection);
     }
-    
-    
-}
 
+    @Test
+    public void testPlayerBulletUp() {
+        Player player = new Player();
+        Bullet bullet = player.shoot();
+        int upDirection = 0;
+        assertEquals(bullet.getDirection(), upDirection);
+    }
+
+}
