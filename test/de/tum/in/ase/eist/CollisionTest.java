@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import de.tum.in.ase.eist.view.Player;
 import de.tum.in.ase.eist.controller.Collision;
 
-public class CollusionTest {
+public class CollisionTest {
 
 	@Test
 	public void testCollisionDetectionTrue() {
