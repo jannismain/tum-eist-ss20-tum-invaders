@@ -1,5 +1,6 @@
 package de.tum.in.ase.eist;
 
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 import de.tum.in.ase.eist.view.Player;
@@ -16,7 +17,7 @@ public class CollisionTest {
 
 	@Test
 	public void testCollisionDetectionFalse() {
-		Player player1 = new Player(250, 250);
+		Player player1 = new Player();
 		Player player2 = new Player(400, 400);
 		Collision coll = new Collision(player1, player2);
 		assertFalse(coll.detectCollision());
