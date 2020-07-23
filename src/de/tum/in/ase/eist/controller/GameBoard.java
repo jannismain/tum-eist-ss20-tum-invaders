@@ -6,6 +6,7 @@ package de.tum.in.ase.eist.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.tum.in.ase.eist.controller.AudioPlayer.Sound;
 import de.tum.in.ase.eist.view.*;
 import de.tum.in.ase.eist.view.geometry.*;
 
@@ -179,11 +180,11 @@ public class GameBoard {
 				if (new Collision(invader, bullet).isCollision) {
 					int remainingHealth = invader.damage(bullet.getDamage());
 					if (remainingHealth <= 0) {
-						audioPlayer.playInvaderKilledSound();
+						audioPlayer.playSound(Sound.INVADER_KILLED);
 						this.gameWon = true;
 						this.stopGame();
 					} else {
-						audioPlayer.playInvaderShotSound();
+						audioPlayer.playSound(Sound.INVADER_HIT);
 					}
 				}
 			}
@@ -202,7 +203,7 @@ public class GameBoard {
 			if (collision.isCollision) {
 				this.gameWon = false;
 				this.stopGame();
-				audioPlayer.playExplosionSound();
+				audioPlayer.playSound(Sound.EXPLOSION);
 			}
 		}
 	}

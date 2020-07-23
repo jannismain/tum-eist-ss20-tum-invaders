@@ -6,7 +6,7 @@ package de.tum.in.ase.eist.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
+import de.tum.in.ase.eist.controller.AudioPlayer.Sound;
 import de.tum.in.ase.eist.view.*;
 
 /**
@@ -61,7 +61,7 @@ public class InputHandler {
                 } else if (e.getCode() == KeyCode.F) {
                     // Shoot when F is pressed
                     AbstractBullet b = player.shoot();
-                    gameBoardUI.getGameBoard().getAudioPlayer().playShootSound();
+                    gameBoardUI.getGameBoard().getAudioPlayer().playSound(Sound.SHOOT);
                     // HACK: adding bullet to game
                     gameBoardUI.getGameBoard().addBullet(b, false);
                     gameBoardUI.UiImages.put(b, gameBoardUI.getImage(b.getIconLocation()));

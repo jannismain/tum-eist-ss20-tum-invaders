@@ -15,7 +15,12 @@ import java.net.URL;
  */
 public class AudioPlayer {
 
+	enum Sound {
+		SHOOT, EXPLOSION, INVADER_HIT, INVADER_KILLED
+	}
+
 	private MediaPlayer mediaPlayer;
+	private boolean shootSoundPlayed;
 
 	// all the sounds are taken from
 	// https://www.classicgaming.cc/classics/space-invaders/sounds
@@ -24,8 +29,6 @@ public class AudioPlayer {
 	public static final String SOUND_INVADER_KILLED = "invaderkilled.wav";
 	public static final String SOUND_INVADER_HIT = "invadershot.wav";
 	public static final String SOUND_SHOOT = "shoot.wav";
-
-	boolean shootSoundPlayed;
 
 	public AudioPlayer() {
 		shootSoundPlayed = false;
@@ -53,21 +56,23 @@ public class AudioPlayer {
 		this.mediaPlayer.stop();
 	}
 
-	public void playShootSound() {
-		this.shootSoundPlayed = true;
-		new MediaPlayer(loadAudioFile(SOUND_SHOOT)).play();
-	}
-
-	public void playExplosionSound() {
-		new MediaPlayer(loadAudioFile(SOUND_EXPLOSION)).play();
-	}
-
-	public void playInvaderKilledSound() {
-		new MediaPlayer(loadAudioFile(SOUND_INVADER_KILLED)).play();
-	}
-
-	public void playInvaderShotSound() {
-		new MediaPlayer(loadAudioFile(SOUND_INVADER_HIT)).play();
+	public void playSound(Sound s) {
+		switch (s) {
+			case SHOOT:
+				this.shootSoundPlayed = true;
+				new MediaPlayer(loadAudioFile(SOUND_SHOOT)).play();
+				break;
+			case EXPLOSION:
+				new MediaPlayer(loadAudioFile(SOUND_EXPLOSION)).play();
+				break;
+			case INVADER_KILLED:
+				new MediaPlayer(loadAudioFile(SOUND_INVADER_KILLED)).play();
+				break;
+			case INVADER_HIT:
+				new MediaPlayer(loadAudioFile(SOUND_INVADER_HIT)).play();
+			default:
+				break;
+		}
 	}
 
 }
