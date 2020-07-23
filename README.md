@@ -23,7 +23,7 @@ This should make things much easier ✨🍰✨.
 
 ## Diagrams
 
-![Space Invader Class Diagram](./diagrams/class_diagram/SpaceInvaderClassDiagram.svg)
+[![Space Invader Class Diagram](./diagrams/class_diagram/SpaceInvaderClassDiagram.svg)](https://raw.githubusercontent.com/jannismain/tum-eist-ss20-tum-invaders/master/diagrams/class_diagram/SpaceInvaderClassDiagram.svg)
 
 ## Testing
 
