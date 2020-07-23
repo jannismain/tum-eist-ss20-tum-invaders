@@ -63,7 +63,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	}
 
 	// thread responsible for telling invaders to shoot
-	private TimerTask invaderKillTimer = new Task();
+	private TimerTask invaderShootTimer = new Task();
 
 	/**
 	 * Sets up all attributes, starts the mouse steering and sets up all graphics
@@ -188,7 +188,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 			this.gameBoard.startGame();
 			this.theThread = new Thread(this);
 			this.theThread.start();
-			invaderKillTimer.run();
+			invaderShootTimer.run();
 			paint(this.graphicsContext);
 			this.toolBar.resetToolBarButtonStatus(true);
 		}
@@ -249,7 +249,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 		if (this.gameBoard.isRunning()) {
 			this.gameBoard.stopGame();
 			timer.cancel();
-			invaderKillTimer.cancel();
+			invaderShootTimer.cancel();
 			this.toolBar.resetToolBarButtonStatus(false);
 		}
 	}
