@@ -1,5 +1,7 @@
 # 👾 Space Invader
 
+[![](https://img.shields.io/badge/Documentation-master-blue)](https://jannismain.github.io/tum-eist-ss20-tum-invaders/)
+
 A clone of Space Invaders, where only a single invader reached earth.
 
 This should make things much easier ✨🍰✨.
