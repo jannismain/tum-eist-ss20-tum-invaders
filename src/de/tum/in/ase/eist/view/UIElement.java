@@ -18,6 +18,7 @@ public abstract class UIElement {
     // the direction is seen as degree within a circle
     private int direction = 90;
     public int speed = 10;
+    public int health = 100;
 
     /**
      * Constructor, taking x and y coordinates where UIElement shall be drawn.
@@ -147,6 +148,15 @@ public abstract class UIElement {
                 this.direction = 360 + this.direction;
             }
         }
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int damage(int amount) {
+        this.health -= amount;
+        return this.health;
     }
 
 }
