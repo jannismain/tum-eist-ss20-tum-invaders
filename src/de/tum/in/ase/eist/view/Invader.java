@@ -18,6 +18,5 @@ public class Invader extends UIElement {
 	public Bullet shoot() {
 		return new Bullet(this.position.getX() + this.getSize().getWidth() / 2,
 				this.position.getY() - this.getSize().getHeight() / 2, false);
-
 	}
 }
