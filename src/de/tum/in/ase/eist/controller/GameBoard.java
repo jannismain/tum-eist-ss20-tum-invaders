@@ -17,8 +17,8 @@ import de.tum.in.ase.eist.view.geometry.*;
 public class GameBoard {
 
 	private List<Invader> invaders = new ArrayList<>();
-	private List<Bullet> playerBullets = new ArrayList<>();
-	private List<Bullet> enemyBullets = new ArrayList<>();
+	private List<AbstractBullet> playerBullets = new ArrayList<>();
+	private List<AbstractBullet> enemyBullets = new ArrayList<>();
 	private Player player;
 
 	private AudioPlayer audioPlayer;
@@ -96,15 +96,15 @@ public class GameBoard {
 		return this.invaders;
 	}
 
-	public List<Bullet> getBullets() {
+	public List<AbstractBullet> getBullets() {
 		return this.playerBullets;
 	}
 
-	public List<Bullet> getEnemyBullets() {
+	public List<AbstractBullet> getEnemyBullets() {
 		return this.enemyBullets;
 	}
 
-	public void addBullet(Bullet b, Boolean enemy) {
+	public void addBullet(AbstractBullet b, Boolean enemy) {
 		if (enemy)
 			this.enemyBullets.add(b);
 		else
@@ -166,15 +166,15 @@ public class GameBoard {
 	public void update() {
 
 		List<Invader> invaders = getInvaders();
-		List<Bullet> bullets = getBullets();
-		List<Bullet> enemyBullets = getEnemyBullets();
+		List<AbstractBullet> bullets = getBullets();
+		List<AbstractBullet> enemyBullets = getEnemyBullets();
 
 		int maxX = (int) size.getWidth();
 		int maxY = (int) size.getHeight();
 
 		for (UIElement invader : invaders) {
 			invader.updatePosition(maxX, maxY);
-			for (Bullet bullet : bullets) {
+			for (AbstractBullet bullet : bullets) {
 				// iterate through all player bullets and see if enemy was shoot
 				if (new Collision(invader, bullet).isCollision) {
 					int remainingHealth = invader.damage(bullet.getDamage());
