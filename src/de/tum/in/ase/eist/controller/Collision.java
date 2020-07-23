@@ -22,13 +22,13 @@ public class Collision {
 	}
 
 	/**
-	 * Checks whether two elements have collided. The translation transformation shifts
-	 * a node from one place to another along one of the axes relative to its
+	 * Checks whether two elements have collided. The translation transformation
+	 * shifts a node from one place to another along one of the axes relative to its
 	 * initial position.
 	 *
 	 * @return boolean - true if collision is detected.
 	 */
-	public boolean detectCollision() {
+	private boolean detectCollision() {
 		Point2D p1 = element1.getPosition();
 		Dimension2D d1 = element1.getSize();
 

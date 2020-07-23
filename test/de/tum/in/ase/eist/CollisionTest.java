@@ -12,7 +12,7 @@ public class CollisionTest {
 	public void testCollisionDetectionTrue() {
 		Player player = new Player(250, 250);
 		Collision coll = new Collision(player, player);
-		assertTrue(coll.detectCollision());
+		assertTrue(coll.isCollision);
 	}
 
 	@Test
@@ -20,7 +20,7 @@ public class CollisionTest {
 		Player player1 = new Player();
 		Player player2 = new Player(400, 400);
 		Collision coll = new Collision(player1, player2);
-		assertFalse(coll.detectCollision());
+		assertFalse(coll.isCollision);
 	}
 
 }
