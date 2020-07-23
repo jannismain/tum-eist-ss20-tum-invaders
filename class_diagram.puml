@@ -42,6 +42,7 @@ package "controller" {
         + void update()
     }
     GameBoard "audioPlayer" --> AudioPlayer
+    GameBoard  --> Collision
 
     class InputHandler {
         - Player player
@@ -148,7 +149,7 @@ package view {
         + void stopGame()
         + void showAsyncAlert(String message)
     }
-    GameBoardUI "size" --> Dimension2D
+    ' GameBoardUI "size" --> Dimension2D
     GameBoardUI ..> javafx
     GameBoardUI "gameBoard" --> GameBoard
     GameBoardUI "keyboardSteering" --> InputHandler

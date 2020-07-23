@@ -25,6 +25,8 @@ This should make things much easier ✨🍰✨.
 
 [![Space Invader Class Diagram](./diagrams/class_diagram/SpaceInvaderClassDiagram.svg)](https://raw.githubusercontent.com/jannismain/tum-eist-ss20-tum-invaders/master/diagrams/class_diagram/SpaceInvaderClassDiagram.svg)
 
+*Note: Some references have been left out to make the diagram more understandable (e.g. any references into the `view.geometry` package)*
+
 ## Testing
 
 See [Testing Documentation](./Testing.md) for more information.
