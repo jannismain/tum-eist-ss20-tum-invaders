@@ -1,0 +1,184 @@
+@startuml SpaceInvaderClassDiagram
+
+package src.de.tum.in.ase.eist {
+
+class SpaceInvader {
+  + {static} void main(String[] args)
+}
+class SpaceInvaderApplication {
+    + GameBoardUI gameBoardUI
+    + Toolbar toolBar
+    + void start(Stage primaryStage)
+    + void startApp(String[] args)
+}
+SpaceInvader --> SpaceInvaderApplication
+SpaceInvaderApplication ..> javafx
+
+package "controller" {
+    class GameBoard {
+        - List<Invader> invaders
+        - List<AbstractBullet> playerBullets
+        - List<AbstractBullet> invaderBullets
+        - Player player
+        - Dimension2D size
+        - boolean isRunning
+        - boolean gameWon
+        + {static} int NUMBER_OF_INVADERS = 1
+        + void addInvaders()
+        + void resetElements()
+        + boolean isRunning()
+        + void setRunning(boolean running)
+        + boolean hasWon()
+        + List<Invader> getInvaders()
+        + List<AbstractBullet> getPlayerBullets()
+        + List<AbstractBullet> getInvaderBullets()
+        + void addBullet(AbstractBullet b, boolean enemy)
+        + Player getPlayer()
+        + AudioPlayer getAudioPlayer()
+        + void startGame()
+        + void stopGame()
+        + void playMusic()
+        + void stopMusic()
+        + void update()
+    }
+    GameBoard "audioPlayer" --> AudioPlayer
+
+    class InputHandler {
+        - Player player
+        + EventHandler<KeyEvent> keyHandler
+    }
+    InputHandler "gameBoardUI" --> GameBoardUI
+    class AudioPlayer {
+        - MediaPlayer mediaPlayer
+        - boolean shootSoundPlayed
+        + {static} String SOUND_BACKGROUND_MUSIC = "background.wav"
+        + {static} String SOUND_EXPLOSION = "explosion.wav"
+        + {static} String SOUND_INVADER_KILLED = "invaderkilled.wav"
+        + {static} String SOUND_INVADER_HIT = "invadershot.wav"
+        + {static} String SOUND_SHOOT = "shoot.wav"
+        - Media loadAudioFile(String fileName)
+        + void playBackgroundMusic()
+        + void stopBackgroundMusic()
+        + void playSound(Sound s)
+
+    }
+    AudioPlayer "mediaPlayer" ..> javafx
+    class Collision {
+        # UIElement element1
+        # UIElement element2
+        + boolean isCollision
+        + Collision(UIElement element1, UIElement element2)
+        - boolean detectCollision()
+    }
+    Collision --> UIElement
+}
+
+package view {
+    package geometry {
+        class Dimension2D {
+            - int width
+            - int height
+        }
+        class Point2D {
+            - int x
+            - int y
+        }
+    }
+    class AbstractBullet {
+        + {static} String BULLET_IMAGE_FILE = "bullet.png"
+        + AbstractBullet(int x, int y, boolean up)
+        + void updatePosition(int maxX, int maxY)
+        + {abstract} int getDamage()
+    }
+    class Bullet {
+        - int damage = 25
+        + int getDamage()
+    }
+    class FastBullet {
+        - int damage = 10
+        - int speed = 20
+        + int getDamage()
+    }
+    class Bullet extends AbstractBullet
+    class FastBullet extends AbstractBullet
+    class AbstractBullet extends UIElement
+    abstract class UIElement {
+        # Point2D position
+        - Dimension2D size
+        - String iconLocation
+        - int direction = 90
+        + int speed = 10
+        + int health = 100
+        + UIElement(int x, int y)
+        + UIElement(int x, int y, int width, int height)
+        + void reset(int x, int y)
+        + void setDirection(int direction)
+        + int getDirection()
+        + int getSpeed()
+        + void setSpeed(int speed)
+        + String getIconLocation()
+        # void setIcon(String iconLocation)
+        + Point2D getPosition()
+        + void setPosition(int x, int y)
+        + Dimension2D getSize()
+        + void updatePosition(int maxX, int maxY)
+        + int getHealth()
+        + int damage(int amount)
+    }
+    class GameBoardUI <implements Runnable> {
+        - {static} Color backgroundColor = Color.BLACK
+        - {static} Color backgroundColor = Color.BLACK
+        - {static} int SLEEP_TIME = 1000 / 25
+        - {field} {static} Dimension2D defaultSize = new Dimension2D(500, 300)
+        - Thread theThread
+        - Dimension2D size
+        - Toolbar toolbar
+        - InputHandler
+        + HashMap<UIElement, Image> UiImages
+        - {static} Timer timer
+        - {static} boolean shouldInvaderShoot;
+        - TimerTask invaderShootTimer;
+        + void run()
+        + void gameSetup()
+        + Image getImage(String ImageFilePath)
+        + void startGame()
+        - void paint(GraphicsContext graphics)
+        - void paintUIElement(UIElement element, GraphicsContext graphics)
+        + Point2D convertPosition(Point2D toConvert)
+        + void stopGame()
+        + void showAsyncAlert(String message)
+    }
+    GameBoardUI "size" --> Dimension2D
+    GameBoardUI ..> javafx
+    GameBoardUI "gameBoard" --> GameBoard
+    GameBoardUI "keyboardSteering" --> InputHandler
+    class Invader {
+        + {static} String INVADER_IMAGE_FILE = "Invader.png"
+        + Invader(int maxX, int maxY)
+        + Bullet shoot()
+    }
+    class Invader extends UIElement
+    Invader --> Bullet
+    class Player {
+        + {static} String PLAYER_IMAGE_FILE = "Spaceship.png"
+        + Player(int x, int y)
+        + AbstractBullet shoot()
+        + void switchBullet()
+    }
+    class Player extends UIElement
+    Player --> Bullet
+    Player --> FastBullet
+    class Toolbar {
+        - Button startButton
+        - Button stopButton
+        + Toolbar(SpaceInvaderApplication gameWindow)
+    }
+    Toolbar "gameWindow" --> SpaceInvaderApplication
+    Toolbar ..> javafx
+
+}
+
+}
+package javafx {}
+
+@enduml
