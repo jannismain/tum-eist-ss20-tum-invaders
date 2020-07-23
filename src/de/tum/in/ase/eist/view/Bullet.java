@@ -7,7 +7,7 @@ public class Bullet extends AbstractBullet {
 
 	private int damage = 25;
 
-	public Bullet(int x, int y, Boolean up) {
+	public Bullet(int x, int y, boolean up) {
 		super(x, y, up);
 		this.setDirection(up ? 0 : 180);
 		this.setIcon(BULLET_IMAGE_FILE);

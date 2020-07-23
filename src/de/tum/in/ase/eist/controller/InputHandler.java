@@ -28,8 +28,6 @@ public class InputHandler {
     public InputHandler(GameBoardUI gameBoardUI) {
         this.gameBoardUI = gameBoardUI;
         this.player = gameBoardUI.getGameBoard().getPlayer();
-        // this.gameBoardUI.addEventHandler(KeyEvent.KEY_PRESSED, this.keyHandler);
-        // this.gameBoardUI.addEventHandler(KeyEvent.KEY_RELEASED, this.keyHandler);
     }
 
     public UIElement getPlayer() {

@@ -7,7 +7,7 @@ public class FastBullet extends AbstractBullet {
 
 	private int damage = 10;
 
-	public FastBullet(int x, int y, Boolean up) {
+	public FastBullet(int x, int y, boolean up) {
 		super(x, y, up);
 		this.setSpeed(20);
 	}

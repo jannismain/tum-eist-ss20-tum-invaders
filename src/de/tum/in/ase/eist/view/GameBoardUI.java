@@ -23,9 +23,9 @@ import de.tum.in.ase.eist.controller.*;
 import de.tum.in.ase.eist.view.geometry.*;
 
 /**
- * This class implements the user interface for controlling the player. The
- * user interface is implemented as a Thread that is started by clicking the
- * start button on the tool bar and stops by the stop button.
+ * This class implements the user interface for controlling the player. The user
+ * interface is implemented as a Thread that is started by clicking the start
+ * button on the tool bar and stops by the stop button.
  *
  */
 public class GameBoardUI extends Canvas implements Runnable {
@@ -50,7 +50,8 @@ public class GameBoardUI extends Canvas implements Runnable {
 
 	// invader shoot timer task
 	private static Timer timer = new Timer();
-	private static Boolean shouldInvaderShoot = false;
+	private static boolean shouldInvaderShoot = false;
+
 	static class Task extends TimerTask {
 		@Override
 		public void run() {
@@ -60,6 +61,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 		}
 
 	}
+
 	// thread responsible for telling invaders to shoot
 	private TimerTask invaderKillTimer = new Task();
 
@@ -87,19 +89,19 @@ public class GameBoardUI extends Canvas implements Runnable {
 				shouldInvaderShoot = false;
 				List<Invader> invaders = gameBoard.getInvaders();
 				for (Invader invader : invaders) {
-                    // HACK: instantiating enemy bullet here
+					// HACK: instantiating enemy bullet here
 					Bullet b = invader.shoot();
 					gameBoard.addBullet(b, true);
-                    UiImages.put(b, getImage(b.getIconLocation()));
+					UiImages.put(b, getImage(b.getIconLocation()));
 				}
 			}
 			// updates UIElements positions and re-renders graphics
 			this.gameBoard.update();
 			// when this.gameBoard.hasWon() is null, do nothing
-			if (this.gameBoard.hasWon() == Boolean.FALSE) {
+			if (!this.gameBoard.hasWon()) {
 				showAsyncAlert("Oh.. you lost.");
 				this.stopGame();
-			} else if (this.gameBoard.hasWon() == Boolean.TRUE) {
+			} else if (this.gameBoard.hasWon()) {
 				showAsyncAlert("Congratulations! You won!!");
 				this.stopGame();
 			}
@@ -147,7 +149,8 @@ public class GameBoardUI extends Canvas implements Runnable {
 		this.UiImages = new HashMap<>();
 		this.keyboardSteering = new InputHandler(this);
 		this.gameBoard.resetElements();
-		this.gameBoard.getInvaders().forEach((invader -> this.UiImages.put(invader, getImage(invader.getIconLocation()))));
+		this.gameBoard.getInvaders()
+				.forEach((invader -> this.UiImages.put(invader, getImage(invader.getIconLocation()))));
 		this.UiImages.put(this.gameBoard.getPlayer(), this.getImage(this.gameBoard.getPlayer().getIconLocation()));
 		paint(this.graphicsContext);
 		this.toolBar.resetToolBarButtonStatus(false);
@@ -157,7 +160,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	 * Set and image
 	 *
 	 * @param ImageFilePath: an image file path that needs to be available in the
-	 *                          resources folder of the project
+	 *                       resources folder of the project
 	 */
 	public Image getImage(String ImageFilePath) {
 		try {
@@ -176,8 +179,8 @@ public class GameBoardUI extends Canvas implements Runnable {
 
 	/**
 	 * Starts the GameBoardUI Thread, if it wasn't running. Starts the game board,
-	 * which causes the UIElements to move. Renders graphics
-	 * and updates tool bar status.
+	 * which causes the UIElements to move. Renders graphics and updates tool bar
+	 * status.
 	 */
 	public void startGame() {
 		if (!this.gameBoard.isRunning()) {
@@ -205,11 +208,11 @@ public class GameBoardUI extends Canvas implements Runnable {
 		// render player
 		paintUIElement(this.gameBoard.getPlayer(), graphics);
 
-		for (UIElement bullet : this.gameBoard.getBullets()) {
+		for (UIElement bullet : this.gameBoard.getPlayerBullets()) {
 			paintUIElement(bullet, graphics);
 		}
 
-		for (UIElement bullet : this.gameBoard.getEnemyBullets()) {
+		for (UIElement bullet : this.gameBoard.getInvaderBullets()) {
 			paintUIElement(bullet, graphics);
 		}
 	}
@@ -217,7 +220,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	/**
 	 * Show image of a UIElement at its current position.
 	 *
-	 * @param element to be drawn
+	 * @param element  to be drawn
 	 * @param graphics used to draw changes
 	 */
 	private void paintUIElement(UIElement element, GraphicsContext graphics) {

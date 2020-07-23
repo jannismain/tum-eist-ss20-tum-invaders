@@ -18,7 +18,7 @@ public class GameBoard {
 
 	private List<Invader> invaders = new ArrayList<>();
 	private List<AbstractBullet> playerBullets = new ArrayList<>();
-	private List<AbstractBullet> enemyBullets = new ArrayList<>();
+	private List<AbstractBullet> invaderBullets = new ArrayList<>();
 	private Player player;
 
 	private AudioPlayer audioPlayer;
@@ -28,7 +28,7 @@ public class GameBoard {
 	// true if game is running, false if game is stopped
 	private boolean isRunning;
 
-	private Boolean gameWon;
+	private boolean gameWon;
 
 	public static int NUMBER_OF_INVADERS = 1;
 
@@ -60,7 +60,7 @@ public class GameBoard {
 		this.player.reset(225, 20);
 		this.invaders.clear();
 		this.playerBullets.clear();
-		this.enemyBullets.clear();
+		this.invaderBullets.clear();
 		addInvaders();
 	}
 
@@ -76,8 +76,8 @@ public class GameBoard {
 	/**
 	 * Used for testing only
 	 */
-	public void setRunning(boolean isRunning) {
-		this.isRunning = isRunning;
+	public void setRunning(boolean running) {
+		this.isRunning = running;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class GameBoard {
 	 * @return null if the game is running; true if the player has won; false if the
 	 *         player has lost
 	 */
-	public Boolean hasWon() {
+	public boolean hasWon() {
 		return this.gameWon;
 	}
 
@@ -96,17 +96,17 @@ public class GameBoard {
 		return this.invaders;
 	}
 
-	public List<AbstractBullet> getBullets() {
+	public List<AbstractBullet> getPlayerBullets() {
 		return this.playerBullets;
 	}
 
-	public List<AbstractBullet> getEnemyBullets() {
-		return this.enemyBullets;
+	public List<AbstractBullet> getInvaderBullets() {
+		return this.invaderBullets;
 	}
 
-	public void addBullet(AbstractBullet b, Boolean enemy) {
+	public void addBullet(AbstractBullet b, boolean enemy) {
 		if (enemy)
-			this.enemyBullets.add(b);
+			this.invaderBullets.add(b);
 		else
 			this.playerBullets.add(b);
 	}
@@ -165,14 +165,12 @@ public class GameBoard {
 	 */
 	public void update() {
 
-		List<Invader> invaders = getInvaders();
-		List<AbstractBullet> bullets = getBullets();
-		List<AbstractBullet> enemyBullets = getEnemyBullets();
+		List<AbstractBullet> bullets = getPlayerBullets();
 
 		int maxX = (int) size.getWidth();
 		int maxY = (int) size.getHeight();
 
-		for (UIElement invader : invaders) {
+		for (UIElement invader : getInvaders()) {
 			invader.updatePosition(maxX, maxY);
 			for (AbstractBullet bullet : bullets) {
 				// iterate through all player bullets and see if enemy was shoot
@@ -195,7 +193,7 @@ public class GameBoard {
 			bullet.updatePosition(maxX, maxY);
 		}
 
-		for (UIElement bullet : enemyBullets) {
+		for (UIElement bullet : getInvaderBullets()) {
 			bullet.updatePosition(maxX, maxY);
 			// iterate through all enemy bullets and see if player was shoot
 			Collision collision = new Collision(player, bullet);
