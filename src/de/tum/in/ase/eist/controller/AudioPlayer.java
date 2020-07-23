@@ -19,11 +19,11 @@ public class AudioPlayer {
 
 	// all the sounds are taken from
 	// https://www.classicgaming.cc/classics/space-invaders/sounds
-	public static final String BACKGROUND_MUSIC_FILE = "background.wav";
-	public static final String EXPLOSION_MUSIC_FILE = "explosion.wav";
-	public static final String INVADER_KILLED_MUSIC_FILE = "invaderkilled.wav";
-	public static final String INVADER_SHOT_MUSIC_FILE = "invadershot.wav";
-	public static final String SHOOT_MUSIC_FILE = "shoot.wav";
+	public static final String SOUND_BACKGROUND_MUSIC = "background.wav";
+	public static final String SOUND_EXPLOSION = "explosion.wav";
+	public static final String SOUND_INVADER_KILLED = "invaderkilled.wav";
+	public static final String SOUND_INVADER_HIT = "invadershot.wav";
+	public static final String SOUND_SHOOT = "shoot.wav";
 
 	boolean shootSoundPlayed;
 
@@ -42,7 +42,7 @@ public class AudioPlayer {
 	}
 
 	public void playBackgroundMusic() {
-		this.mediaPlayer = new MediaPlayer(loadAudioFile(BACKGROUND_MUSIC_FILE));
+		this.mediaPlayer = new MediaPlayer(loadAudioFile(SOUND_BACKGROUND_MUSIC));
 		this.mediaPlayer.setAutoPlay(true);
 		// Loop for the main music sound:
 		this.mediaPlayer.setOnEndOfMedia(() -> AudioPlayer.this.mediaPlayer.seek(Duration.ZERO));
@@ -55,19 +55,19 @@ public class AudioPlayer {
 
 	public void playShootSound() {
 		this.shootSoundPlayed = true;
-		new MediaPlayer(loadAudioFile(SHOOT_MUSIC_FILE)).play();
+		new MediaPlayer(loadAudioFile(SOUND_SHOOT)).play();
 	}
 
 	public void playExplosionSound() {
-		new MediaPlayer(loadAudioFile(EXPLOSION_MUSIC_FILE)).play();
+		new MediaPlayer(loadAudioFile(SOUND_EXPLOSION)).play();
 	}
 
 	public void playInvaderKilledSound() {
-		new MediaPlayer(loadAudioFile(INVADER_KILLED_MUSIC_FILE)).play();
+		new MediaPlayer(loadAudioFile(SOUND_INVADER_KILLED)).play();
 	}
 
 	public void playInvaderShotSound() {
-		new MediaPlayer(loadAudioFile(INVADER_SHOT_MUSIC_FILE)).play();
+		new MediaPlayer(loadAudioFile(SOUND_INVADER_HIT)).play();
 	}
 
 }
