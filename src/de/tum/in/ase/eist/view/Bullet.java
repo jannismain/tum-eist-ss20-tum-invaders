@@ -10,6 +10,7 @@ public class Bullet extends UIElement implements AbstractWeapon {
 
 	public static String BULLET_IMAGE_FILE = "bullet.png";
 	private int RANK = 1;
+	private int damage = 25;
 
 	public Bullet(int x, int y, Boolean up) {
 		super(x, y, 5, 10);
@@ -37,6 +38,10 @@ public class Bullet extends UIElement implements AbstractWeapon {
 
 	public int getRank() {
 		return RANK;
+	}
+
+	public int getDamage() {
+		return damage;
 	}
 
 }
