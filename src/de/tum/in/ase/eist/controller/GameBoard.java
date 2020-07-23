@@ -29,7 +29,7 @@ public class GameBoard {
 	// true if game is running, false if game is stopped
 	private boolean isRunning;
 
-	private boolean gameWon;
+	private Boolean gameWon;
 
 	public static int NUMBER_OF_INVADERS = 1;
 
@@ -88,7 +88,7 @@ public class GameBoard {
 	 * @return null if the game is running; true if the player has won; false if the
 	 *         player has lost
 	 */
-	public boolean hasWon() {
+	public Boolean hasWon() {
 		return this.gameWon;
 	}
 

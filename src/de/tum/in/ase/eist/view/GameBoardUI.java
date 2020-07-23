@@ -98,10 +98,10 @@ public class GameBoardUI extends Canvas implements Runnable {
 			// updates UIElements positions and re-renders graphics
 			this.gameBoard.update();
 			// when this.gameBoard.hasWon() is null, do nothing
-			if (!this.gameBoard.hasWon()) {
+			if (this.gameBoard.hasWon() == Boolean.FALSE) {
 				showAsyncAlert("Oh.. you lost.");
 				this.stopGame();
-			} else if (this.gameBoard.hasWon()) {
+			} else if (this.gameBoard.hasWon() == Boolean.TRUE) {
 				showAsyncAlert("Congratulations! You won!!");
 				this.stopGame();
 			}
