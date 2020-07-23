@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.tum.in.ase.eist</groupId>
-	<artifactId>Tum-Invaders</artifactId>
+	<artifactId>SpaceInvader</artifactId>
 	<packaging>jar</packaging>
-	<version>3.0</version>
-	<name>Tum Invaders</name>
+	<version>5.0</version>
+	<name>SpaceInvader</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
