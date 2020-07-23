@@ -22,14 +22,17 @@ public class InputHandler {
     /**
      * Constructor, creates InputHandler instance.
      *
-     * @param gameBoardUI
-     * @param player
+     * @param gameBoardUI reference to GameBoardUI instance
      */
     public InputHandler(GameBoardUI gameBoardUI) {
         this.gameBoardUI = gameBoardUI;
         this.player = gameBoardUI.getGameBoard().getPlayer();
     }
 
+    /**
+     *
+     * @return player instance
+     */
     public UIElement getPlayer() {
         return this.player;
     }

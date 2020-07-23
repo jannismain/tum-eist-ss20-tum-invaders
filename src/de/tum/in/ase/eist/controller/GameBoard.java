@@ -75,6 +75,8 @@ public class GameBoard {
 
 	/**
 	 * Used for testing only
+	 *
+	 * @param running true if game is still running, false otherwise
 	 */
 	public void setRunning(boolean running) {
 		this.isRunning = running;

@@ -32,6 +32,11 @@ public abstract class UIElement {
 
     /**
      * Special Constructor with custom width and height.
+     *
+     * @param x      x coordinate
+     * @param y      y coordinate
+     * @param width  element width
+     * @param height element height
      */
     public UIElement(int x, int y, int width, int height) {
         this.position = new Point2D(x, y);
@@ -41,6 +46,9 @@ public abstract class UIElement {
     /**
      * The element's position is reset to (x,y). The speed is set to 0 and the
      * directions points to 90 degrees.
+     *
+     * @param x reset to this x coordinate
+     * @param y reset to this y coordinate
      */
     public void reset(int x, int y) {
         this.position = new Point2D(x, y);
@@ -51,8 +59,8 @@ public abstract class UIElement {
     /**
      * Sets the element's direction
      *
-     * @param direction
-     * @throws IllegalArgumentException
+     * @param direction degree between 0 and 360
+     * @throws IllegalArgumentException if degree is not within valid range [0, 360]
      */
     public void setDirection(int direction) throws IllegalArgumentException {
         if (direction < 0 || direction > 360) {
@@ -69,6 +77,11 @@ public abstract class UIElement {
         return this.speed;
     }
 
+    /**
+     * Apply new speed to UIElement
+     *
+     * @param speed new speed
+     */
     public void setSpeed(int speed) {
         this.speed = speed;
     }
@@ -81,7 +94,7 @@ public abstract class UIElement {
      * Sets the image of the UIElement
      *
      * @param iconLocation path of the image file
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException if *iconLocation* is null
      */
     protected void setIcon(String iconLocation) throws IllegalArgumentException {
         if (iconLocation == null) {

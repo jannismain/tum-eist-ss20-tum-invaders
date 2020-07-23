@@ -60,6 +60,8 @@ public class SpaceInvaderApplication extends Application {
 
 	/**
 	 * The whole game will be executed through the launch() method
+	 * 
+	 * @param args command line arguments
 	 */
 	public static void startApp(String[] args) {
 		launch(args);

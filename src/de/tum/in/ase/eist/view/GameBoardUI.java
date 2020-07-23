@@ -161,6 +161,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	 *
 	 * @param ImageFilePath: an image file path that needs to be available in the
 	 *                       resources folder of the project
+	 * @return Image image at *ImageFilePath*
 	 */
 	public Image getImage(String ImageFilePath) {
 		try {
@@ -235,6 +236,7 @@ public class GameBoardUI extends Canvas implements Runnable {
 	 * Converts position of UIElement to position on the canvas
 	 *
 	 * @param toConvert the point to be converted
+	 * @return Point2D converted Point
 	 */
 	public Point2D convertPosition(Point2D toConvert) {
 		return new Point2D(toConvert.getX(), getHeight() - toConvert.getY());
