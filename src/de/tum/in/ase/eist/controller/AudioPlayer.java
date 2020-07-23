@@ -22,6 +22,7 @@ public class AudioPlayer {
 	public static final String BACKGROUND_MUSIC_FILE = "background.wav";
 	public static final String EXPLOSION_MUSIC_FILE = "explosion.wav";
 	public static final String INVADER_KILLED_MUSIC_FILE = "invaderkilled.wav";
+	public static final String INVADER_SHOT_MUSIC_FILE = "invadershot.wav";
 	public static final String SHOOT_MUSIC_FILE = "shoot.wav";
 
 	boolean shootSoundPlayed;
@@ -63,7 +64,10 @@ public class AudioPlayer {
 
 	public void playInvaderKilledSound() {
 		new MediaPlayer(loadAudioFile(INVADER_KILLED_MUSIC_FILE)).play();
+	}
 
+	public void playInvaderShotSound() {
+		new MediaPlayer(loadAudioFile(INVADER_SHOT_MUSIC_FILE)).play();
 	}
 
 }

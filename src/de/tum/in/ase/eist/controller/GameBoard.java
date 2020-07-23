@@ -10,8 +10,8 @@ import de.tum.in.ase.eist.view.*;
 import de.tum.in.ase.eist.view.geometry.*;
 
 /**
- * Creates all UIElements, detects collisions, updates UIElement positions, notifies
- * player about victory or defeat
+ * Creates all UIElements, detects collisions, updates UIElement positions,
+ * notifies player about victory or defeat
  *
  */
 public class GameBoard {
@@ -53,7 +53,8 @@ public class GameBoard {
 	}
 
 	/**
-	 * Removes all existing UIElements, resets their position, creates new UIElements.
+	 * Removes all existing UIElements, resets their position, creates new
+	 * UIElements.
 	 */
 	public void resetElements() {
 		this.player.reset(225, 20);
@@ -159,8 +160,8 @@ public class GameBoard {
 	}
 
 	/**
-	 * Iterate through list of UIElements and update their positions.
-	 * Evaluate if either invader or player are hit by bullets.
+	 * Iterate through list of UIElements and update their positions. Evaluate if
+	 * either invader or player are hit by bullets.
 	 */
 	public void update() {
 
@@ -173,12 +174,17 @@ public class GameBoard {
 
 		for (UIElement invader : invaders) {
 			invader.updatePosition(maxX, maxY);
-			for (UIElement bullet : bullets) {
+			for (Bullet bullet : bullets) {
 				// iterate through all player bullets and see if enemy was shoot
 				if (new Collision(invader, bullet).isCollision) {
-					this.gameWon = true;
-					this.stopGame();
-					audioPlayer.playInvaderKilledSound();
+					int remainingHealth = invader.damage(bullet.getDamage());
+					if (remainingHealth <= 0) {
+						audioPlayer.playInvaderKilledSound();
+						this.gameWon = true;
+						this.stopGame();
+					} else {
+						audioPlayer.playInvaderShotSound();
+					}
 				}
 			}
 		}
