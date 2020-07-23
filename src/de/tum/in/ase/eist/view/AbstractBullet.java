@@ -5,7 +5,6 @@ import de.tum.in.ase.eist.view.geometry.Point2D;
 public abstract class AbstractBullet extends UIElement {
 
     public static String BULLET_IMAGE_FILE = "bullet.png";
-    private int damage = 25;
 
     public AbstractBullet(int x, int y, boolean up) {
         super(x, y, 5, 10);
@@ -31,8 +30,6 @@ public abstract class AbstractBullet extends UIElement {
         }
     }
 
-    public int getDamage() {
-        return damage;
-    }
+    public abstract int getDamage();
 
 }
