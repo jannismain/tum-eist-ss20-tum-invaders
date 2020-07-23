@@ -6,6 +6,8 @@ A clone of Space Invaders, where only a single invader reached earth.
 
 This should make things much easier ✨🍰✨.
 
+![](./screenshot.png)
+
 ## Getting Started
 
 * Launch the application
